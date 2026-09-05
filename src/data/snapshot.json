@@ -1,0 +1,1181 @@
+{
+  "fetchedAt": "2026-09-05T09:13:29.041Z",
+  "repos": {
+    "AdityaKodez/adityaojha": [
+      {
+        "sha": "d155528a656d2f37bec60a73ad2dd97337751330",
+        "message": "Merge pull request #42 from AdityaKodez/feat/components-catalog-views",
+        "author": "Aditya",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-09-04T06:54:41Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/d155528a656d2f37bec60a73ad2dd97337751330"
+      },
+      {
+        "sha": "0669f56a57f6fb06c1129af28ba1abf9f009bd76",
+        "message": "feat: add cursor-lit dot gutters beside the home frame",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-09-04T06:51:03Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/0669f56a57f6fb06c1129af28ba1abf9f009bd76"
+      },
+      {
+        "sha": "a219ffbcdedce44b5a1a6c9d627e5e483cae4b8a",
+        "message": "Merge pull request #41 from AdityaKodez/feat/components-catalog-views",
+        "author": "Aditya",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-09-03T16:41:01Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/a219ffbcdedce44b5a1a6c9d627e5e483cae4b8a"
+      },
+      {
+        "sha": "8738067415e0024272fe37c14ffbc241ecd03876",
+        "message": "Fix category label casing in skills component",
+        "author": "Aditya",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-09-03T16:39:54Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/8738067415e0024272fe37c14ffbc241ecd03876"
+      },
+      {
+        "sha": "5b908548f95cd53c2625ef9876bfc366da59b4ee",
+        "message": "Update app/sitemap.ts",
+        "author": "Aditya",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-09-03T16:38:41Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/5b908548f95cd53c2625ef9876bfc366da59b4ee"
+      },
+      {
+        "sha": "aa56217955c5540bf7093a4f230289d75391fd50",
+        "message": "feat: add components catalog card view, frame sync, and ui polish",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-09-03T16:33:27Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/aa56217955c5540bf7093a4f230289d75391fd50"
+      },
+      {
+        "sha": "9069aae94146c489dd1bc484c40acfbb94c7dcab",
+        "message": "feat: add progress-bars & section-rail components with indicators, review polish and registry update",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-09-02T13:31:29Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/9069aae94146c489dd1bc484c40acfbb94c7dcab"
+      },
+      {
+        "sha": "b641a271f517a879955aad291de5ebdfb1be7452",
+        "message": "feat(analytics): add PostHog analytics with custom event tracking",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-09-02T10:18:31Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/b641a271f517a879955aad291de5ebdfb1be7452"
+      },
+      {
+        "sha": "25c8e825c37ad27ab509fd7b91002abeb440ebc0",
+        "message": "Merge pull request #40 from AdityaKodez/fix/project-showcase-mobile-description",
+        "author": "Aditya",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-09-01T17:07:47Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/25c8e825c37ad27ab509fd7b91002abeb440ebc0"
+      },
+      {
+        "sha": "83cf634ee281bc24886d20904962a6c6c079f497",
+        "message": "fix: show project description instead of name on mobile in project explorer",
+        "author": "Kiro Agent",
+        "authorLogin": "kiro-agent",
+        "committedAt": "2026-09-01T17:06:32Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/83cf634ee281bc24886d20904962a6c6c079f497"
+      },
+      {
+        "sha": "f3725bfb2e9beeef6172d9a706d06794957ce22a",
+        "message": "fix: resolve security, performance, accessibility, and reliability issues",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-09-01T14:24:34Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/f3725bfb2e9beeef6172d9a706d06794957ce22a"
+      },
+      {
+        "sha": "e5733f925507b769d94d397debd83547be26b0e4",
+        "message": "feat(registry): make namespaced @akoder/<name> install the primary command",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-08-31T10:42:51Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/e5733f925507b769d94d397debd83547be26b0e4"
+      },
+      {
+        "sha": "926b40153f58042c8a64ca4adece69db4bf3bc68",
+        "message": "feat(components): expand registry components, demos, and showcase updates",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-08-31T09:51:12Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/926b40153f58042c8a64ca4adece69db4bf3bc68"
+      },
+      {
+        "sha": "8322b7d6ef4805bfa420044b5e93621c96c9d743",
+        "message": "feat(components): add /components showcase route with DottedWorldMap",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-08-30T08:30:25Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/8322b7d6ef4805bfa420044b5e93621c96c9d743"
+      },
+      {
+        "sha": "e3421af2983be9f00de38b15e2675e3ff4a3af3e",
+        "message": "Refactor project and skills sections",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-08-25T12:18:58Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/e3421af2983be9f00de38b15e2675e3ff4a3af3e"
+      },
+      {
+        "sha": "b40ab184aef8e39737d89f223c82f809be183993",
+        "message": "refactor(og): drop portrait, enlarge serif name for a cleaner minimal banner",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-08-24T16:23:24Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/b40ab184aef8e39737d89f223c82f809be183993"
+      },
+      {
+        "sha": "2658cc6ae6dca5e262aecd83966fe09b7024b347",
+        "message": "feat(og): generate Open Graph banner with Instrument Serif typography and portrait",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-08-24T16:15:49Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/2658cc6ae6dca5e262aecd83966fe09b7024b347"
+      },
+      {
+        "sha": "c9bf4dcd071e04a477cd863c19a06c14dbd1bb62",
+        "message": "feat(footer): replace isometric skyline with ASCII garden, Marcus Aurelius quote; sync pending local changes",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-08-24T15:46:23Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/c9bf4dcd071e04a477cd863c19a06c14dbd1bb62"
+      },
+      {
+        "sha": "fa7122131498a7a95201af4b96612cde9504bdf5",
+        "message": "Merge pull request #39 from AdityaKodez/v0/shadcn-theme-configuration-995ac571",
+        "author": "vercel[bot]",
+        "authorLogin": "vercel[bot]",
+        "committedAt": "2026-08-24T14:07:41Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/fa7122131498a7a95201af4b96612cde9504bdf5"
+      },
+      {
+        "sha": "fb34a3e012c1e9d4f4016893b61fa774ebc29b46",
+        "message": "feat: adjust component styling and layout for ZenoProject component",
+        "author": "v0",
+        "authorLogin": "v0",
+        "committedAt": "2026-08-24T14:04:37Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/fb34a3e012c1e9d4f4016893b61fa774ebc29b46"
+      },
+      {
+        "sha": "a545efadc5edc14a326c44dc126f6944809f740a",
+        "message": "feat: add heatmap color variables and update GitHubCalendar color scale",
+        "author": "v0",
+        "authorLogin": "v0",
+        "committedAt": "2026-08-24T14:02:26Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/a545efadc5edc14a326c44dc126f6944809f740a"
+      },
+      {
+        "sha": "c43d3bf790bcaffc72e0276b2cd59c9773f2571c",
+        "message": "feat: update primary color values in globals.css",
+        "author": "v0",
+        "authorLogin": "v0",
+        "committedAt": "2026-08-24T13:57:59Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/c43d3bf790bcaffc72e0276b2cd59c9773f2571c"
+      },
+      {
+        "sha": "efea546d7aa985021b604d957b7dcfd31fd732b7",
+        "message": "Merge pull request #38 from AdityaKodez/v0/portfolio-optimization-c90fcc1e",
+        "author": "vercel[bot]",
+        "authorLogin": "vercel[bot]",
+        "committedAt": "2026-08-24T11:19:06Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/efea546d7aa985021b604d957b7dcfd31fd732b7"
+      },
+      {
+        "sha": "24587f8c7e552862eb6f8cdfdb6659a8c8c61ea6",
+        "message": "feat: update CTA component border styles for contact channels",
+        "author": "v0",
+        "authorLogin": "v0",
+        "committedAt": "2026-08-24T11:15:01Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/24587f8c7e552862eb6f8cdfdb6659a8c8c61ea6"
+      },
+      {
+        "sha": "744c063701c334d261a30016c5328819ba3b0fe1",
+        "message": "Restored v6: refactor: simplify footer component and adjust layout",
+        "author": "v0",
+        "authorLogin": "v0",
+        "committedAt": "2026-08-24T10:58:05Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/744c063701c334d261a30016c5328819ba3b0fe1"
+      },
+      {
+        "sha": "d7ae43f9e9b091d5007d53eb3bd376e34e2c5c7d",
+        "message": "feat: adjust footer positioning and styling in page and footer components",
+        "author": "v0",
+        "authorLogin": "v0",
+        "committedAt": "2026-08-24T10:57:07Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/d7ae43f9e9b091d5007d53eb3bd376e34e2c5c7d"
+      },
+      {
+        "sha": "7310849ca9597283ca4903678217e2ee3d42491f",
+        "message": "refactor: simplify footer component and adjust layout",
+        "author": "v0",
+        "authorLogin": "v0",
+        "committedAt": "2026-08-24T10:56:03Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/7310849ca9597283ca4903678217e2ee3d42491f"
+      },
+      {
+        "sha": "db392b0201e608e25f699572a6890b0792ad84fe",
+        "message": "Restored v2: feat: revamp footer with social links and 3D building animation",
+        "author": "v0",
+        "authorLogin": "v0",
+        "committedAt": "2026-08-24T10:53:34Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/db392b0201e608e25f699572a6890b0792ad84fe"
+      },
+      {
+        "sha": "1a52047c41f5e16b571df90c3f61b2347d43f3c6",
+        "message": "feat: update footer layout with isometric blocks and social links styling",
+        "author": "v0",
+        "authorLogin": "v0",
+        "committedAt": "2026-08-24T10:53:20Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/1a52047c41f5e16b571df90c3f61b2347d43f3c6"
+      },
+      {
+        "sha": "eb797b2978456ac8cd083cbe3067d029aa7aad39",
+        "message": "feat: implement wireframe skyline with overlapping blocks in footer",
+        "author": "v0",
+        "authorLogin": "v0",
+        "committedAt": "2026-08-24T10:51:02Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/eb797b2978456ac8cd083cbe3067d029aa7aad39"
+      },
+      {
+        "sha": "ee26e9a21092e842da31979c4ba4c0fff1dcd45c",
+        "message": "feat: revamp footer with social links and 3D building animation",
+        "author": "v0",
+        "authorLogin": "v0",
+        "committedAt": "2026-08-24T10:49:30Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/ee26e9a21092e842da31979c4ba4c0fff1dcd45c"
+      },
+      {
+        "sha": "6c1a27745ff77a82d632eca0ad10c761fd7e6736",
+        "message": "feat: update job title and CTA links, enhance layout and hero sections",
+        "author": "v0",
+        "authorLogin": "v0",
+        "committedAt": "2026-08-24T10:45:25Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/6c1a27745ff77a82d632eca0ad10c761fd7e6736"
+      },
+      {
+        "sha": "6fc02df682497f16bd6a9cede56d9f7a7dfa2ff8",
+        "message": "Add Rixel project and expandable project listing",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-08-08T06:25:52Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/6fc02df682497f16bd6a9cede56d9f7a7dfa2ff8"
+      },
+      {
+        "sha": "fe6f6d29c10cb87f779735255e8e34a82082d2d1",
+        "message": "Merge pull request #35 from AdityaKodez/rhea/fix-cms1ji71t000304l7t1o0pldw-hlt2rj",
+        "author": "Aditya",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-07-26T08:48:51Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/fe6f6d29c10cb87f779735255e8e34a82082d2d1"
+      },
+      {
+        "sha": "ceb160b7a81b705739d41a933b212770dbc57740",
+        "message": "fix(design-typography): about section uses non-standard `text-[1.03rem]` breaking type scale",
+        "author": "rhea-security[bot]",
+        "authorLogin": "rixel-code[bot]",
+        "committedAt": "2026-07-26T08:48:25Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/ceb160b7a81b705739d41a933b212770dbc57740"
+      },
+      {
+        "sha": "cb99f66f7a274097d49d320e862352ab860fd8bb",
+        "message": "Merge pull request #32 from AdityaKodez/rhea/fix-cmrle45jg000104jqb9jji5l6-ju2vyu",
+        "author": "Aditya",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-07-15T01:50:38Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/cb99f66f7a274097d49d320e862352ab860fd8bb"
+      },
+      {
+        "sha": "c7eace57268f1951b86e9fcb35b80c226b42dc09",
+        "message": "fix(configuration): development server log committed to repository leaks internal network IP",
+        "author": "rhea-security[bot]",
+        "authorLogin": "rixel-code[bot]",
+        "committedAt": "2026-07-15T01:49:58Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/c7eace57268f1951b86e9fcb35b80c226b42dc09"
+      },
+      {
+        "sha": "671a638ba7d82f1ce7ecaddeed752c5669a1d5ac",
+        "message": "Merge pull request #31 from AdityaKodez/rhea/fix-cmrkjgqmg00060wua8cqac8ds-i6ftxm",
+        "author": "Aditya",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-07-14T12:10:56Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/671a638ba7d82f1ce7ecaddeed752c5669a1d5ac"
+      },
+      {
+        "sha": "d9fb20bd66a0efaac965e3f4dd3f895fa715ea8b",
+        "message": "Merge pull request #30 from AdityaKodez/rhea/fix-cmrkjgrnd00070wuasr4tbikt-tmv0hs",
+        "author": "Aditya",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-07-14T12:10:16Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/d9fb20bd66a0efaac965e3f4dd3f895fa715ea8b"
+      },
+      {
+        "sha": "8e7983c06dfefd66da9c7ae7ce3d59ee4999c4cc",
+        "message": "fix(api-security): public Discord status API has no rate limiting or abuse controls",
+        "author": "rhea-security[bot]",
+        "authorLogin": "rixel-code[bot]",
+        "committedAt": "2026-07-14T11:59:22Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/8e7983c06dfefd66da9c7ae7ce3d59ee4999c4cc"
+      },
+      {
+        "sha": "03e19546793e470ae03902a5fa2e990d746edef3",
+        "message": "fix(configuration): missing HTTP security headers in Next.js config",
+        "author": "rhea-security[bot]",
+        "authorLogin": "rixel-code[bot]",
+        "committedAt": "2026-07-14T11:43:03Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/03e19546793e470ae03902a5fa2e990d746edef3"
+      },
+      {
+        "sha": "934ab6fadccc8ee7efc25d0e5cddd2b08bbb068a",
+        "message": "Merge pull request #29 from AdityaKodez/vercel/install-vercel-speed-insights-5yoc0v",
+        "author": "Aditya",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-07-09T08:48:05Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/934ab6fadccc8ee7efc25d0e5cddd2b08bbb068a"
+      },
+      {
+        "sha": "54d26e431207e622c06471ea33fca2713a57e401",
+        "message": "Install Vercel Speed Insights",
+        "author": "Vercel",
+        "authorLogin": "vercel[bot]",
+        "committedAt": "2026-07-09T08:21:58Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/54d26e431207e622c06471ea33fca2713a57e401"
+      },
+      {
+        "sha": "9f85ee91479f7c074beeb370f5adb9f6a844fadd",
+        "message": "feat: refactor projects to 2x2 grid layout and add Aura project",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-06-12T11:09:06Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/9f85ee91479f7c074beeb370f5adb9f6a844fadd"
+      },
+      {
+        "sha": "001a0cf3028e20e0f3ffcf473768a2fdf8b7917c",
+        "message": "feat: add site configuration and landing page components including hero and cta sections",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-05-10T08:38:40Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/001a0cf3028e20e0f3ffcf473768a2fdf8b7917c"
+      },
+      {
+        "sha": "641d70b81eb1816f960277a29fc0c4e54b6ca862",
+        "message": "feat: Introduce core components and configurations for various portfolio sections and a reusable accordion UI.",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-16T14:18:02Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/641d70b81eb1816f960277a29fc0c4e54b6ca862"
+      },
+      {
+        "sha": "331cc3a82e5eea236df1d73747e65132c3cf44c1",
+        "message": "trying to fix that blur thing properly if i could",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-16T07:14:09Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/331cc3a82e5eea236df1d73747e65132c3cf44c1"
+      },
+      {
+        "sha": "048125f17585a915e1e66f0f2feb4deb002dff2e",
+        "message": "fix again",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-16T07:08:10Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/048125f17585a915e1e66f0f2feb4deb002dff2e"
+      },
+      {
+        "sha": "5008e016e68ca0619ae52f023e421f1a7e18f39f",
+        "message": "fix",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-16T07:04:20Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/5008e016e68ca0619ae52f023e421f1a7e18f39f"
+      },
+      {
+        "sha": "47e28f0c34a6898962087ef9b85b5eccc3fcb150",
+        "message": "feat: implement core application layout, home page structure, and Discord status component.",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-16T06:58:49Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/47e28f0c34a6898962087ef9b85b5eccc3fcb150"
+      },
+      {
+        "sha": "75460743693069383de0ae69f153e487f9a1f382",
+        "message": "feat: Implement initial portfolio page structure with dynamic sections and a real-time Discord status component.",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-16T06:49:42Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/75460743693069383de0ae69f153e487f9a1f382"
+      },
+      {
+        "sha": "d22900518adc454bb29e27500b8b6adc2c5ab6d3",
+        "message": ".",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-15T14:42:37Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/d22900518adc454bb29e27500b8b6adc2c5ab6d3"
+      },
+      {
+        "sha": "47d6d47085dece5f82fc7203b67b1e94411272fa",
+        "message": "Merge pull request #28 from AdityaKodez/draft-reply",
+        "author": "Aditya",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-15T14:40:47Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/47d6d47085dece5f82fc7203b67b1e94411272fa"
+      },
+      {
+        "sha": "49374c5e9aa1afc639ed5edfd677857b4378898f",
+        "message": "Merge pull request #27 from AdityaKodez/fix/missing-noopener-noreferrer-18209320143158932060",
+        "author": "Aditya",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-15T14:36:07Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/49374c5e9aa1afc639ed5edfd677857b4378898f"
+      },
+      {
+        "sha": "da1ce6cee6ec29d1233a434b2ed79de3ca240c72",
+        "message": "fix: add missing rel=\"noopener noreferrer\" to external links",
+        "author": "google-labs-jules[bot]",
+        "authorLogin": "google-labs-jules[bot]",
+        "committedAt": "2026-03-15T14:27:11Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/da1ce6cee6ec29d1233a434b2ed79de3ca240c72"
+      },
+      {
+        "sha": "bbedc8a815da22abedfef08504fb90df8f767f26",
+        "message": "feat: add Reddit social link and icon to social components",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-15T13:54:58Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/bbedc8a815da22abedfef08504fb90df8f767f26"
+      },
+      {
+        "sha": "4a448ef0f33ca7155be59640116eb5e3544ebc5b",
+        "message": "style: update SkillChip and ProjectCard components for improved styling and layout",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-15T12:20:10Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/4a448ef0f33ca7155be59640116eb5e3544ebc5b"
+      },
+      {
+        "sha": "37941b90739e2f6f15edb31863193c4c4a8d210a",
+        "message": "Merge branch 'main' of https://github.com/AdityaKodez/adityaojha",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-15T11:59:07Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/37941b90739e2f6f15edb31863193c4c4a8d210a"
+      },
+      {
+        "sha": "aace5b18dcdc8169241dee1462ddb56029f3adb6",
+        "message": "feat: update bookmarks component to support dynamic collections and enhance layout",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-15T11:59:04Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/aace5b18dcdc8169241dee1462ddb56029f3adb6"
+      },
+      {
+        "sha": "c52de1b412097b6cf7373b24761e210aa6d925fa",
+        "message": "Merge pull request #26 from AdityaKodez/optimize-github-array-flattening-14790266241565467154",
+        "author": "Aditya",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-13T10:57:14Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/c52de1b412097b6cf7373b24761e210aa6d925fa"
+      },
+      {
+        "sha": "dbdfe36ff145e4daa0b299c0196cbefc91968f58",
+        "message": "perf(github): simplify array flattening with flatMap",
+        "author": "google-labs-jules[bot]",
+        "authorLogin": "google-labs-jules[bot]",
+        "committedAt": "2026-03-13T10:55:29Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/dbdfe36ff145e4daa0b299c0196cbefc91968f58"
+      },
+      {
+        "sha": "24b91c6791df4da4af65ba42c0a015c82dc3a2a0",
+        "message": "feat: enhance testimonials slider and update project card icons",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-13T07:59:50Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/24b91c6791df4da4af65ba42c0a015c82dc3a2a0"
+      },
+      {
+        "sha": "fec48ae929b2c47be8f2a95fa482cc2c6dcc80eb",
+        "message": "red red",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-13T07:34:13Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/fec48ae929b2c47be8f2a95fa482cc2c6dcc80eb"
+      },
+      {
+        "sha": "c1f454e512de99af889ac4fa43dd4a6fe3dfe16e",
+        "message": "feat: update footer layout and add GitHub link to site configuration",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-13T06:39:01Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/c1f454e512de99af889ac4fa43dd4a6fe3dfe16e"
+      },
+      {
+        "sha": "183fcbe70258ffc81fc6dd91f2c3f149c0055fdd",
+        "message": "leading issue solved",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-12T14:03:32Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/183fcbe70258ffc81fc6dd91f2c3f149c0055fdd"
+      },
+      {
+        "sha": "03ccedd6e915ab338a8056b0fe936ffa015ffb94",
+        "message": "small update",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-12T13:58:18Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/03ccedd6e915ab338a8056b0fe936ffa015ffb94"
+      },
+      {
+        "sha": "0d157a8bad052b1adc6a3e6d5f5ac62298711767",
+        "message": "feat: update project descriptions and improve UI interactions",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-12T13:54:26Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/0d157a8bad052b1adc6a3e6d5f5ac62298711767"
+      },
+      {
+        "sha": "b0c7b4c4573f0b776f5d363fac7227d32c8c6a68",
+        "message": "Merge pull request #25 from AdityaKodez/add-spotify-play-button-15404533976912994128",
+        "author": "Aditya",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-09T14:45:31Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/b0c7b4c4573f0b776f5d363fac7227d32c8c6a68"
+      },
+      {
+        "sha": "bb3b8057e8173a0d463579dfe4732c55de56f89e",
+        "message": "feat: Use outlined button for Spotify play icon",
+        "author": "google-labs-jules[bot]",
+        "authorLogin": "google-labs-jules[bot]",
+        "committedAt": "2026-03-09T14:44:51Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/bb3b8057e8173a0d463579dfe4732c55de56f89e"
+      },
+      {
+        "sha": "16e7345013754ebd56d869730584aa5d776cab28",
+        "message": "feat(discord-status): add Spotify play button link in tooltip",
+        "author": "google-labs-jules[bot]",
+        "authorLogin": "google-labs-jules[bot]",
+        "committedAt": "2026-03-09T14:38:31Z",
+        "url": "https://github.com/AdityaKodez/adityaojha/commit/16e7345013754ebd56d869730584aa5d776cab28"
+      }
+    ],
+    "AdityaKodez/hackathon-idea-finder": [
+      {
+        "sha": "40e24ff60d3e0b14012932bee437095afa9a0751",
+        "message": "Initial commit: hackathon-idea-finder skill",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-08-19T14:31:11Z",
+        "url": "https://github.com/AdityaKodez/hackathon-idea-finder/commit/40e24ff60d3e0b14012932bee437095afa9a0751"
+      }
+    ],
+    "AdityaKodez/gridly": [
+      {
+        "sha": "4f52ab299242ad380c559e077bd660c516e2fa65",
+        "message": "Merge pull request #17 from AdityaKodez/rhea/fix-cmri18a1r000204jpioftu2h8-u7ecga",
+        "author": "Aditya",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-07-13T13:34:04Z",
+        "url": "https://github.com/AdityaKodez/gridly/commit/4f52ab299242ad380c559e077bd660c516e2fa65"
+      },
+      {
+        "sha": "1860adbbab3781067c7d449e3981462d91091500",
+        "message": "fix(authentication): auth secret validated with insufficient minimum strength",
+        "author": "rhea-security[bot]",
+        "authorLogin": "rixel-code[bot]",
+        "committedAt": "2026-07-13T13:24:27Z",
+        "url": "https://github.com/AdityaKodez/gridly/commit/1860adbbab3781067c7d449e3981462d91091500"
+      },
+      {
+        "sha": "31f469a176359aa2f18f94fab697cd9df0ee4d81",
+        "message": "Merge pull request #15 from AdityaKodez/v0/t1faker-c39a5836",
+        "author": "Aditya",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-06-30T13:56:41Z",
+        "url": "https://github.com/AdityaKodez/gridly/commit/31f469a176359aa2f18f94fab697cd9df0ee4d81"
+      },
+      {
+        "sha": "51a93cccc2b9765f0458877ea2018ab6b6cd1e8f",
+        "message": "feat: update @polar-sh/sdk to version 0.47.1",
+        "author": "v0agent",
+        "authorLogin": "v0",
+        "committedAt": "2026-06-30T13:55:27Z",
+        "url": "https://github.com/AdityaKodez/gridly/commit/51a93cccc2b9765f0458877ea2018ab6b6cd1e8f"
+      },
+      {
+        "sha": "8f5dd96091f027301df579cbc66692ccb9e6af63",
+        "message": "Merge pull request #14 from AdityaKodez/v0/update-next-ai-sdk-0eb919e2",
+        "author": "Aditya",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-06-30T13:52:32Z",
+        "url": "https://github.com/AdityaKodez/gridly/commit/8f5dd96091f027301df579cbc66692ccb9e6af63"
+      },
+      {
+        "sha": "fb353171bacbdbba6736ca32f9ce18a25b4c4675",
+        "message": "Delete pnpm-lock.yaml",
+        "author": "Aditya",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-06-30T13:52:09Z",
+        "url": "https://github.com/AdityaKodez/gridly/commit/fb353171bacbdbba6736ca32f9ce18a25b4c4675"
+      },
+      {
+        "sha": "ffc5dd3235edadf4492b6c0b58b7240f86435f46",
+        "message": "feat: update SDK versions and change step count function",
+        "author": "v0agent",
+        "authorLogin": "v0",
+        "committedAt": "2026-06-30T13:51:03Z",
+        "url": "https://github.com/AdityaKodez/gridly/commit/ffc5dd3235edadf4492b6c0b58b7240f86435f46"
+      },
+      {
+        "sha": "08c52cec0738f126129c0b0091befc4cc558628a",
+        "message": "Merge pull request #11 from AdityaKodez/fix-theme-css-xss-10308715154090625963",
+        "author": "Aditya",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-09T02:20:56Z",
+        "url": "https://github.com/AdityaKodez/gridly/commit/08c52cec0738f126129c0b0091befc4cc558628a"
+      },
+      {
+        "sha": "f053301c711717a0f9aaa8f86e6a92b61a1f2a1f",
+        "message": "fix: remove dangerouslySetInnerHTML from layout.tsx for theme CSS",
+        "author": "google-labs-jules[bot]",
+        "authorLogin": "google-labs-jules[bot]",
+        "committedAt": "2026-03-08T13:48:39Z",
+        "url": "https://github.com/AdityaKodez/gridly/commit/f053301c711717a0f9aaa8f86e6a92b61a1f2a1f"
+      },
+      {
+        "sha": "c39915806c7c976c7c29bbfef7f30a5846e1ebd9",
+        "message": "fixing the logo of readme",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-08T13:41:36Z",
+        "url": "https://github.com/AdityaKodez/gridly/commit/c39915806c7c976c7c29bbfef7f30a5846e1ebd9"
+      },
+      {
+        "sha": "7bd4c204f66aa766d66d088b2fc27ed45457ea51",
+        "message": "fix",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-08T13:40:27Z",
+        "url": "https://github.com/AdityaKodez/gridly/commit/7bd4c204f66aa766d66d088b2fc27ed45457ea51"
+      },
+      {
+        "sha": "f009179c6a52489ccacd5de4eaad21209e7d3945",
+        "message": "logo in readme thats it",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-08T13:38:30Z",
+        "url": "https://github.com/AdityaKodez/gridly/commit/f009179c6a52489ccacd5de4eaad21209e7d3945"
+      },
+      {
+        "sha": "733f0dbe8edc045b1010cd902df75d5ec7fc3419",
+        "message": "Merge pull request #10 from AdityaKodez/setup-onboarding",
+        "author": "Aditya",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-08T13:33:52Z",
+        "url": "https://github.com/AdityaKodez/gridly/commit/733f0dbe8edc045b1010cd902df75d5ec7fc3419"
+      },
+      {
+        "sha": "62d124962d48e33e58e0ebc37fb089a790e081c4",
+        "message": "updated readme files",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-08T13:31:56Z",
+        "url": "https://github.com/AdityaKodez/gridly/commit/62d124962d48e33e58e0ebc37fb089a790e081c4"
+      },
+      {
+        "sha": "2dd102a454a04286c6855fc43d17ee9c28eecd19",
+        "message": "refactor onboarding logic to streamline dashboard onboarding snapshot retrieval",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-08T13:28:55Z",
+        "url": "https://github.com/AdityaKodez/gridly/commit/2dd102a454a04286c6855fc43d17ee9c28eecd19"
+      },
+      {
+        "sha": "1a1870bee81b577ae3dce82292116d73a2978ffe",
+        "message": "verision bump",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-08T13:23:18Z",
+        "url": "https://github.com/AdityaKodez/gridly/commit/1a1870bee81b577ae3dce82292116d73a2978ffe"
+      },
+      {
+        "sha": "84dce06b9cb906cfc6c821ca90a7a5eb9dc5a803",
+        "message": "implement onboarding feature with auto steps, checklist, and user onboarding state management",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-08T13:21:44Z",
+        "url": "https://github.com/AdityaKodez/gridly/commit/84dce06b9cb906cfc6c821ca90a7a5eb9dc5a803"
+      },
+      {
+        "sha": "2b54714e7c33a51bb2396a88747cd20d66fd9218",
+        "message": "add .idea configuration files and improve dashboard error handling with Empty component",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-07T14:27:09Z",
+        "url": "https://github.com/AdityaKodez/gridly/commit/2b54714e7c33a51bb2396a88747cd20d66fd9218"
+      },
+      {
+        "sha": "018d811a884c30f24ad19ae4096cad27aca9b4d4",
+        "message": "improve the design and layout of the dashboard",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-07T12:56:16Z",
+        "url": "https://github.com/AdityaKodez/gridly/commit/018d811a884c30f24ad19ae4096cad27aca9b4d4"
+      },
+      {
+        "sha": "0b9b9535741be0d9a48995612f2864d3768a8d9e",
+        "message": "improve the design and layout of the dashboard",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-07T11:31:45Z",
+        "url": "https://github.com/AdityaKodez/gridly/commit/0b9b9535741be0d9a48995612f2864d3768a8d9e"
+      },
+      {
+        "sha": "3ac72aee3b20eb8f3da92beabb0abf047e95fdf1",
+        "message": "remove unneccessary shadcn components",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-06T11:49:14Z",
+        "url": "https://github.com/AdityaKodez/gridly/commit/3ac72aee3b20eb8f3da92beabb0abf047e95fdf1"
+      },
+      {
+        "sha": "13b110003fc83983b1643dd6357f8d1aa04587f4",
+        "message": "fixes and skill added",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-06T11:34:06Z",
+        "url": "https://github.com/AdityaKodez/gridly/commit/13b110003fc83983b1643dd6357f8d1aa04587f4"
+      },
+      {
+        "sha": "5491791c790995b57c85e829967cdbba0a3a21a0",
+        "message": "Merge branch 'master' of https://github.com/AdityaKodez/gridly",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-06T11:29:15Z",
+        "url": "https://github.com/AdityaKodez/gridly/commit/5491791c790995b57c85e829967cdbba0a3a21a0"
+      },
+      {
+        "sha": "f226387316ebff6aa59d1e5de0ee5a8c1d42d060",
+        "message": "performance improvement",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-06T11:29:13Z",
+        "url": "https://github.com/AdityaKodez/gridly/commit/f226387316ebff6aa59d1e5de0ee5a8c1d42d060"
+      },
+      {
+        "sha": "a5165df072ad5f0c574aa1ba6b1eed3ba7fff914",
+        "message": "Add CodeQL analysis workflow configuration",
+        "author": "Aditya",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-06T11:20:31Z",
+        "url": "https://github.com/AdityaKodez/gridly/commit/a5165df072ad5f0c574aa1ba6b1eed3ba7fff914"
+      },
+      {
+        "sha": "31d4adf0e311b4ef20be0b9cc2238d9f4cab0a51",
+        "message": "Add ESLint workflow for code analysis",
+        "author": "Aditya",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-06T11:16:59Z",
+        "url": "https://github.com/AdityaKodez/gridly/commit/31d4adf0e311b4ef20be0b9cc2238d9f4cab0a51"
+      },
+      {
+        "sha": "03f854cce345e3701ad1aed87dc779933ae4c784",
+        "message": "Add GitHub Actions workflow for greetings",
+        "author": "Aditya",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-06T11:15:41Z",
+        "url": "https://github.com/AdityaKodez/gridly/commit/03f854cce345e3701ad1aed87dc779933ae4c784"
+      },
+      {
+        "sha": "eb30b04eaac3833cd249a02089e77273ab924fdc",
+        "message": " refactor: Optimize async calls in Header component and improve message handling in Chat component",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-03-06T11:13:03Z",
+        "url": "https://github.com/AdityaKodez/gridly/commit/eb30b04eaac3833cd249a02089e77273ab924fdc"
+      }
+    ],
+    "AdityaKodez/javascript-learner": [
+      {
+        "sha": "605c323e0fb5db774f57eebf73a6c3052cc29a50",
+        "message": "clean",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-06-16T14:45:11Z",
+        "url": "https://github.com/AdityaKodez/javascript-learner/commit/605c323e0fb5db774f57eebf73a6c3052cc29a50"
+      },
+      {
+        "sha": "b76724e0593795a04888577156d1e117458bdf15",
+        "message": "solved design issue",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-06-16T13:51:58Z",
+        "url": "https://github.com/AdityaKodez/javascript-learner/commit/b76724e0593795a04888577156d1e117458bdf15"
+      },
+      {
+        "sha": "2d21dd377802ddb2fe1798342c74479df82c7e78",
+        "message": "improved the ui , removed bull shit and overall usability is increased",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-06-16T13:16:44Z",
+        "url": "https://github.com/AdityaKodez/javascript-learner/commit/2d21dd377802ddb2fe1798342c74479df82c7e78"
+      },
+      {
+        "sha": "58d2d348f115a1481dba18527ef2f15340e03d24",
+        "message": "added syntax highlighting",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-06-16T12:27:05Z",
+        "url": "https://github.com/AdityaKodez/javascript-learner/commit/58d2d348f115a1481dba18527ef2f15340e03d24"
+      },
+      {
+        "sha": "0ca2d5cfed87c80f6addc226d8fb5c18611b2670",
+        "message": "so many changes idk",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-06-16T06:50:08Z",
+        "url": "https://github.com/AdityaKodez/javascript-learner/commit/0ca2d5cfed87c80f6addc226d8fb5c18611b2670"
+      },
+      {
+        "sha": "28d300aad3139f3eb41caa0a6144949c81d7b777",
+        "message": "init markdown",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-06-15T06:59:45Z",
+        "url": "https://github.com/AdityaKodez/javascript-learner/commit/28d300aad3139f3eb41caa0a6144949c81d7b777"
+      },
+      {
+        "sha": "7752f5c9f83a2da53ee0ace01f97f1c6794b9f14",
+        "message": "init setup",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-06-15T06:59:34Z",
+        "url": "https://github.com/AdityaKodez/javascript-learner/commit/7752f5c9f83a2da53ee0ace01f97f1c6794b9f14"
+      },
+      {
+        "sha": "6c1b21b20f00d909bb036ec83fc083da32912f7b",
+        "message": "feat: initial commit",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-06-15T04:19:29Z",
+        "url": "https://github.com/AdityaKodez/javascript-learner/commit/6c1b21b20f00d909bb036ec83fc083da32912f7b"
+      }
+    ],
+    "AdityaKodez/generate-brand-names-skill": [
+      {
+        "sha": "51a8ff313cd84246c0f49b88681b88c352fdc72e",
+        "message": "Update README to remove 'ZCode' reference",
+        "author": "Aditya",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-07-05T10:27:18Z",
+        "url": "https://github.com/AdityaKodez/generate-brand-names-skill/commit/51a8ff313cd84246c0f49b88681b88c352fdc72e"
+      },
+      {
+        "sha": "f735a7994bc300e004c4e47a5bd6ba82b96e68eb",
+        "message": "Merge pull request #1 from AdityaKodez/add-readme",
+        "author": "Aditya",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-07-05T10:26:56Z",
+        "url": "https://github.com/AdityaKodez/generate-brand-names-skill/commit/f735a7994bc300e004c4e47a5bd6ba82b96e68eb"
+      },
+      {
+        "sha": "d946e612399342423bf722e7e841a3feed11da34",
+        "message": "Add README for brand names skill",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-07-05T10:26:04Z",
+        "url": "https://github.com/AdityaKodez/generate-brand-names-skill/commit/d946e612399342423bf722e7e841a3feed11da34"
+      },
+      {
+        "sha": "b32af4bb4e01d767b04352670b73318798ca0fa3",
+        "message": "Improve brand naming quality filters",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-07-05T10:15:04Z",
+        "url": "https://github.com/AdityaKodez/generate-brand-names-skill/commit/b32af4bb4e01d767b04352670b73318798ca0fa3"
+      },
+      {
+        "sha": "fdd87ce514fa8efa6b2001663d8724acddb9c0c3",
+        "message": "Add generate-brand-names skill",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-07-05T09:23:10Z",
+        "url": "https://github.com/AdityaKodez/generate-brand-names-skill/commit/fdd87ce514fa8efa6b2001663d8724acddb9c0c3"
+      }
+    ],
+    "AdityaKodez/ohm": [
+      {
+        "sha": "93c58a6c7ffabd63f261fcdb6197d08f8c0f2913",
+        "message": "Merge pull request #6 from AdityaKodez/v0/stats-filter-fix-c81b4930",
+        "author": "vercel[bot]",
+        "authorLogin": "vercel[bot]",
+        "committedAt": "2026-06-30T14:09:20Z",
+        "url": "https://github.com/AdityaKodez/ohm/commit/93c58a6c7ffabd63f261fcdb6197d08f8c0f2913"
+      },
+      {
+        "sha": "8d81f55c78acf878ec8add499928ce834bef9d42",
+        "message": "feat: implement answer filter and update UI for AnswerReview component",
+        "author": "v0agent",
+        "authorLogin": "v0",
+        "committedAt": "2026-06-30T14:08:59Z",
+        "url": "https://github.com/AdityaKodez/ohm/commit/8d81f55c78acf878ec8add499928ce834bef9d42"
+      },
+      {
+        "sha": "07defb54e5a242d69598fa9c7acb59dcb467cbc6",
+        "message": "Merge pull request #5 from AdityaKodez/v0/t1faker-797d0710",
+        "author": "vercel[bot]",
+        "authorLogin": "vercel[bot]",
+        "committedAt": "2026-06-30T07:26:09Z",
+        "url": "https://github.com/AdityaKodez/ohm/commit/07defb54e5a242d69598fa9c7acb59dcb467cbc6"
+      },
+      {
+        "sha": "28005042c1e7fdcef0957fb6d1e7d0be8d176054",
+        "message": "feat: add quiz submission functionality and update UI",
+        "author": "v0agent",
+        "authorLogin": "v0",
+        "committedAt": "2026-06-30T07:24:21Z",
+        "url": "https://github.com/AdityaKodez/ohm/commit/28005042c1e7fdcef0957fb6d1e7d0be8d176054"
+      },
+      {
+        "sha": "d33b6c405d6da9bb14f767baf31ba4a90a967621",
+        "message": "feat: update aria-label logic in ModeToggle component",
+        "author": "v0agent",
+        "authorLogin": "v0",
+        "committedAt": "2026-06-30T07:20:54Z",
+        "url": "https://github.com/AdityaKodez/ohm/commit/d33b6c405d6da9bb14f767baf31ba4a90a967621"
+      },
+      {
+        "sha": "5d518d4b96b660d0dc89c46d2dbc898467d5f477",
+        "message": "updated package.json",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-06-30T07:18:07Z",
+        "url": "https://github.com/AdityaKodez/ohm/commit/5d518d4b96b660d0dc89c46d2dbc898467d5f477"
+      },
+      {
+        "sha": "e798ba37e68eac778dee33820f115622265fda45",
+        "message": "Merge branch 'feature/ai-quiz-generator' of https://github.com/AdityaKodez/ohm into feature/ai-quiz-generator",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-06-30T07:15:02Z",
+        "url": "https://github.com/AdityaKodez/ohm/commit/e798ba37e68eac778dee33820f115622265fda45"
+      },
+      {
+        "sha": "08b68f7911b014d807b76231ffe89a2886add0ea",
+        "message": "changes",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-06-30T07:14:59Z",
+        "url": "https://github.com/AdityaKodez/ohm/commit/08b68f7911b014d807b76231ffe89a2886add0ea"
+      },
+      {
+        "sha": "ebeeba41addfc1b5cd523b839cda06a5fe72821c",
+        "message": "Merge pull request #4 from AdityaKodez/v0/rate-limiting-with-toaster-2-219a1950",
+        "author": "vercel[bot]",
+        "authorLogin": "vercel[bot]",
+        "committedAt": "2026-06-30T07:03:50Z",
+        "url": "https://github.com/AdityaKodez/ohm/commit/ebeeba41addfc1b5cd523b839cda06a5fe72821c"
+      },
+      {
+        "sha": "696996a2181f580cde2470909a77028fce338191",
+        "message": "feat: implement rate limiting and toast notifications across app",
+        "author": "v0agent",
+        "authorLogin": "v0",
+        "committedAt": "2026-06-30T07:03:24Z",
+        "url": "https://github.com/AdityaKodez/ohm/commit/696996a2181f580cde2470909a77028fce338191"
+      },
+      {
+        "sha": "19d8154e02250315f34834d18ae701a4acdb788f",
+        "message": "Merge pull request #3 from AdityaKodez/v0/t1faker-9ef06f16",
+        "author": "vercel[bot]",
+        "authorLogin": "vercel[bot]",
+        "committedAt": "2026-06-30T06:39:47Z",
+        "url": "https://github.com/AdityaKodez/ohm/commit/19d8154e02250315f34834d18ae701a4acdb788f"
+      },
+      {
+        "sha": "549ababd2d72f48fc47a411ba6761cbec58c0be8",
+        "message": "init",
+        "author": "vercel[bot]",
+        "authorLogin": "vercel[bot]",
+        "committedAt": "2026-06-30T06:39:41Z",
+        "url": "https://github.com/AdityaKodez/ohm/commit/549ababd2d72f48fc47a411ba6761cbec58c0be8"
+      },
+      {
+        "sha": "a5184efc857aa45f6b0313903312038a693e4ad6",
+        "message": "Merge pull request #2 from AdityaKodez/v0/t1faker-4afeec28",
+        "author": "vercel[bot]",
+        "authorLogin": "vercel[bot]",
+        "committedAt": "2026-06-30T06:35:51Z",
+        "url": "https://github.com/AdityaKodez/ohm/commit/a5184efc857aa45f6b0313903312038a693e4ad6"
+      },
+      {
+        "sha": "9a0959c4db7b64981d54f0474aca06b04218ff7d",
+        "message": "feat: switch PDF text extraction to unpdf for serverless compatibility",
+        "author": "v0agent",
+        "authorLogin": "v0",
+        "committedAt": "2026-06-30T06:34:37Z",
+        "url": "https://github.com/AdityaKodez/ohm/commit/9a0959c4db7b64981d54f0474aca06b04218ff7d"
+      },
+      {
+        "sha": "169799bae33f34e3677eec6137f88d05dbd43b8d",
+        "message": "deleted vercel icon",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-06-30T06:25:41Z",
+        "url": "https://github.com/AdityaKodez/ohm/commit/169799bae33f34e3677eec6137f88d05dbd43b8d"
+      },
+      {
+        "sha": "7cfa19914b3d3698b730d21723f82d099e8a602a",
+        "message": "Merge pull request #1 from AdityaKodez/mode-toggler-button-with-animation",
+        "author": "vercel[bot]",
+        "authorLogin": "vercel[bot]",
+        "committedAt": "2026-06-30T06:23:04Z",
+        "url": "https://github.com/AdityaKodez/ohm/commit/7cfa19914b3d3698b730d21723f82d099e8a602a"
+      },
+      {
+        "sha": "448cd3c9c66355b6e66c32c032d31d22a3d5413a",
+        "message": "feat: add app icons and update layout metadata",
+        "author": "v0agent",
+        "authorLogin": "v0",
+        "committedAt": "2026-06-30T06:22:33Z",
+        "url": "https://github.com/AdityaKodez/ohm/commit/448cd3c9c66355b6e66c32c032d31d22a3d5413a"
+      },
+      {
+        "sha": "46faa0a31dc9b61b563b9aedc24c8bde1c1c9388",
+        "message": "feat: implement 5 MB file size limit for PDF uploads in QuizCreator component",
+        "author": "v0agent",
+        "authorLogin": "v0",
+        "committedAt": "2026-06-30T06:18:48Z",
+        "url": "https://github.com/AdityaKodez/ohm/commit/46faa0a31dc9b61b563b9aedc24c8bde1c1c9388"
+      },
+      {
+        "sha": "b8487314a12d8a7db16cd231786e7857f6116717",
+        "message": "feat: reduce PDF size limit to 1 MB for generate-quiz endpoint",
+        "author": "v0agent",
+        "authorLogin": "v0",
+        "committedAt": "2026-06-30T06:16:32Z",
+        "url": "https://github.com/AdityaKodez/ohm/commit/b8487314a12d8a7db16cd231786e7857f6116717"
+      },
+      {
+        "sha": "e7d65b357bfa0707cf96a880098e8371a560ad19",
+        "message": "feat: reduce max PDF size limit to 5 MB in generate-quiz API",
+        "author": "v0agent",
+        "authorLogin": "v0",
+        "committedAt": "2026-06-30T06:16:06Z",
+        "url": "https://github.com/AdityaKodez/ohm/commit/e7d65b357bfa0707cf96a880098e8371a560ad19"
+      },
+      {
+        "sha": "a112d7f51819c16f9f24b30de7196f3fabf108db",
+        "message": "feat: update quiz-creator component's div border-radius to rounded-lg",
+        "author": "v0agent",
+        "authorLogin": "v0",
+        "committedAt": "2026-06-30T06:15:18Z",
+        "url": "https://github.com/AdityaKodez/ohm/commit/a112d7f51819c16f9f24b30de7196f3fabf108db"
+      },
+      {
+        "sha": "0ccbb604513d5e2318dffbcb97b3c97242b54798",
+        "message": "feat: update quiz-creator component styling for better responsiveness",
+        "author": "v0agent",
+        "authorLogin": "v0",
+        "committedAt": "2026-06-30T06:14:48Z",
+        "url": "https://github.com/AdityaKodez/ohm/commit/0ccbb604513d5e2318dffbcb97b3c97242b54798"
+      },
+      {
+        "sha": "d2b441523671e50ea2f59a8240c0be9239ecf2d6",
+        "message": "feat: update quiz-creator component styling for better hover effect",
+        "author": "v0agent",
+        "authorLogin": "v0",
+        "committedAt": "2026-06-30T06:13:10Z",
+        "url": "https://github.com/AdityaKodez/ohm/commit/d2b441523671e50ea2f59a8240c0be9239ecf2d6"
+      },
+      {
+        "sha": "e38beab8b038e0aa5f96e27b88b60ddec6e43d94",
+        "message": "feat: update prompt badge font to heading style",
+        "author": "v0agent",
+        "authorLogin": "v0",
+        "committedAt": "2026-06-30T06:12:27Z",
+        "url": "https://github.com/AdityaKodez/ohm/commit/e38beab8b038e0aa5f96e27b88b60ddec6e43d94"
+      },
+      {
+        "sha": "45537ff01b0096b5fdeff554a4c206f58928454c",
+        "message": "docs: update README with app overview and tech stack details",
+        "author": "v0agent",
+        "authorLogin": "v0",
+        "committedAt": "2026-06-30T06:09:39Z",
+        "url": "https://github.com/AdityaKodez/ohm/commit/45537ff01b0096b5fdeff554a4c206f58928454c"
+      },
+      {
+        "sha": "a5d07a8389faa5b0df48a833c116f9a1240eaa27",
+        "message": "feat: add dark mode toggle and integrate with QuizCreator page",
+        "author": "v0agent",
+        "authorLogin": "v0",
+        "committedAt": "2026-06-30T06:07:19Z",
+        "url": "https://github.com/AdityaKodez/ohm/commit/a5d07a8389faa5b0df48a833c116f9a1240eaa27"
+      },
+      {
+        "sha": "ddcc567cab6a45b8352e69b344260a9aa11b7ee1",
+        "message": "build eveything",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-06-30T05:58:28Z",
+        "url": "https://github.com/AdityaKodez/ohm/commit/ddcc567cab6a45b8352e69b344260a9aa11b7ee1"
+      },
+      {
+        "sha": "f200e0f056eee7496ee53523ea4d922881b43ab4",
+        "message": "feat: initial commit",
+        "author": "Pubgggdie",
+        "authorLogin": "AdityaKodez",
+        "committedAt": "2026-06-28T05:38:57Z",
+        "url": "https://github.com/AdityaKodez/ohm/commit/f200e0f056eee7496ee53523ea4d922881b43ab4"
+      }
+    ]
+  },
+  "user": {
+    "login": "AdityaKodez",
+    "id": 91722397,
+    "node_id": "U_kgDOBXeSnQ",
+    "avatar_url": "https://avatars.githubusercontent.com/u/91722397?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/AdityaKodez",
+    "html_url": "https://github.com/AdityaKodez",
+    "followers_url": "https://api.github.com/users/AdityaKodez/followers",
+    "following_url": "https://api.github.com/users/AdityaKodez/following{/other_user}",
+    "gists_url": "https://api.github.com/users/AdityaKodez/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/AdityaKodez/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/AdityaKodez/subscriptions",
+    "organizations_url": "https://api.github.com/users/AdityaKodez/orgs",
+    "repos_url": "https://api.github.com/users/AdityaKodez/repos",
+    "events_url": "https://api.github.com/users/AdityaKodez/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/AdityaKodez/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false,
+    "name": "Aditya",
+    "company": null,
+    "blog": "akoder.xyz",
+    "location": "India",
+    "email": "adityakodez@gmail.com",
+    "hireable": null,
+    "bio": "I build products fast and kill them faster.\r\nNext.js, React, TypeScript, Postgres.",
+    "twitter_username": "AdiKodez",
+    "notification_email": "adityakodez@gmail.com",
+    "public_repos": 15,
+    "public_gists": 0,
+    "followers": 32,
+    "following": 7,
+    "created_at": "2021-10-01T07:35:09Z",
+    "updated_at": "2026-08-05T16:31:33Z"
+  },
+  "repoSlugs": [
+    "AdityaKodez/adityaojha",
+    "AdityaKodez/hackathon-idea-finder",
+    "AdityaKodez/gridly",
+    "AdityaKodez/javascript-learner",
+    "AdityaKodez/generate-brand-names-skill",
+    "AdityaKodez/ohm"
+  ]
+}
