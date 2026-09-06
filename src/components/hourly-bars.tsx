@@ -6,7 +6,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { utcTime } from "@/lib/format";
+import { formatTime } from "@/lib/format";
 import { HOUR_MS, type RepoStats } from "@/lib/stats";
 
 /** The shaded per-hour bars under the barcode plot — hover any bar. */
@@ -18,7 +18,7 @@ export function HourlyBars({ stats }: { stats: RepoStats }) {
         const start = stats.windowStart + i * HOUR_MS;
         const end = start + HOUR_MS;
         return (
-          <Tooltip key={i}>
+          <Tooltip key={start}>
             <TooltipTrigger asChild>
               {/* min height keeps the whole strip hoverable, even empty hours */}
               <div
@@ -34,8 +34,8 @@ export function HourlyBars({ stats }: { stats: RepoStats }) {
             </TooltipTrigger>
             <TooltipContent>
               {count === 0
-                ? `No commits · ${utcTime(start)} UTC`
-                : `${count} commit${count === 1 ? "" : "s"} · ${utcTime(start)}–${utcTime(end)} UTC`}
+                ? `No commits · ${formatTime(start)}`
+                : `${count} commit${count === 1 ? "" : "s"} · ${formatTime(start)}–${formatTime(end)}`}
             </TooltipContent>
           </Tooltip>
         );

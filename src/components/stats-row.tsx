@@ -1,18 +1,14 @@
 import type { ReactNode } from "react";
-import { cn } from "cn";
 
 export type StatItem = { value: string; label: ReactNode };
 
 export function StatsRow({ items }: { items: StatItem[] }) {
   return (
     <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-5">
-      {items.map((item, i) => (
+      {items.map((item) => (
         <div
-          key={i}
-          className={cn(
-            "lg:border-l lg:border-border lg:pl-6",
-            i === 0 && "lg:border-l-0 lg:pl-0",
-          )}
+          key={`${item.value}-${typeof item.label === "string" ? item.label : "stat"}`}
+          className="lg:border-l lg:border-border lg:pl-6 first:lg:border-l-0 first:lg:pl-0"
         >
           <div className="text-2xl font-bold tracking-tight tabular-nums">
             {item.value}

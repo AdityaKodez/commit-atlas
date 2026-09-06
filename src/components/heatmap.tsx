@@ -1,15 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { utcMonthDay } from "@/lib/format";
+import { formatMonthDay } from "@/lib/format";
 import type { CalendarCell } from "@/lib/stats";
 
 const LEVEL_CLASSES = [
   "bg-[#1b1b1f]",
-  "bg-[#7c2d12]",
-  "bg-[#c2410c]",
-  "bg-[#ea580c]",
-  "bg-[#f97316]",
+  "bg-[#2e2e33]",
+  "bg-[#52525b]",
+  "bg-[#a1a1aa]",
+  "bg-[#fafafa]",
 ];
 
 function level(count: number, max: number): number {
@@ -43,7 +43,7 @@ export function Heatmap({ weeks }: { weeks: CalendarCell[][] }) {
   const monthLabels: Array<{ col: number; label: string }> = [];
   let lastMonth = -1;
   weeks.forEach((week, col) => {
-    const month = new Date(week[0].date).getUTCMonth();
+    const month = new Date(week[0].date).getMonth();
     if (month !== lastMonth) {
       monthLabels.push({ col, label: MONTHS[month] });
       lastMonth = month;
@@ -109,7 +109,7 @@ export function Heatmap({ weeks }: { weeks: CalendarCell[][] }) {
               data-tip={
                 cell.future
                   ? undefined
-                  : `${cell.count} commit${cell.count === 1 ? "" : "s"} · ${utcMonthDay(cell.date)}`
+                  : `${cell.count} commit${cell.count === 1 ? "" : "s"} · ${formatMonthDay(cell.date)}`
               }
               className={`aspect-square rounded-[2px] ${cell.future ? "invisible" : LEVEL_CLASSES[level(cell.count, max)]}`}
             />

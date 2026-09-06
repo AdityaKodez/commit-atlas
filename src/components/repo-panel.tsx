@@ -5,7 +5,7 @@ import { DotMatrix } from "@/components/dot-matrix";
 import { HourlyBars } from "@/components/hourly-bars";
 import { RollingChart } from "@/components/rolling-chart";
 import { StatsRow } from "@/components/stats-row";
-import { fmtInt, utcMonthDayTime, utcTime } from "@/lib/format";
+import { fmtInt, formatMonthDayTime, formatTime } from "@/lib/format";
 import { repoFullName, repoSlug, type RepoConfig } from "@/lib/repos";
 import {
   countInWindow,
@@ -55,10 +55,16 @@ export function RepoPanel({
   );
 
   const windowCommits = commits
-    .map((c) => ({ ...c, t: Date.parse(c.committedAt) }))
-    .filter((c) => c.t >= windowStart && c.t <= windowEnd)
-    .sort((a, b) => a.t - b.t)
-    .map((c) => ({ ...c, pct: ((c.t - windowStart) / (windowEnd - windowStart)) * 100 }));
+    .reduce<Array<Commit & { t: number; pct: number }>>((acc, c) => {
+      const t = Date.parse(c.committedAt);
+      if (t >= windowStart && t <= windowEnd) {
+        const span = windowEnd - windowStart || 1;
+        const pct = Math.min(100, Math.max(0, ((t - windowStart) / span) * 100));
+        acc.push({ ...c, t, pct });
+      }
+      return acc;
+    }, [])
+    .sort((a, b) => a.t - b.t);
 
   return (
     <section
@@ -74,8 +80,8 @@ export function RepoPanel({
         {windowCount === 1 ? "commit" : "commits"} in the last 48 hours
       </h2>
       <p className="mt-2 max-w-3xl text-xs leading-5 text-muted-foreground sm:text-sm sm:leading-6">
-        Window: {utcMonthDayTime(windowStart)} to {utcMonthDayTime(windowEnd)}{" "}
-        UTC. Baseline: every hourly rolling 48h window over the 14 days before
+        Window: {formatMonthDayTime(windowStart)} to {formatMonthDayTime(windowEnd)}.{" "}
+        Baseline: every hourly rolling 48h window over the 14 days before
         that ({fmtInt(stats.baselineWindows)} windows). Source: GitHub commits
         on {repoFullName(config)}.
         {stale && " Showing a cached snapshot — live fetch failed."}
@@ -155,8 +161,8 @@ export function RepoPanel({
             {[0, 0.25, 0.5, 0.75, 1].map((f) => (
               <span key={f}>
                 {f === 0
-                  ? utcMonthDayTime(windowStart)
-                  : utcTime(windowStart + f * WINDOW_HOURS * HOUR_MS)}
+                  ? formatMonthDayTime(windowStart)
+                  : formatTime(windowStart + f * WINDOW_HOURS * HOUR_MS)}
               </span>
             ))}
           </div>
@@ -166,7 +172,7 @@ export function RepoPanel({
           GitHub. Each shaded bar counts the commits that landed in that hour —
           hover a bar for the exact time range.
           {busiest &&
-            ` The busiest hour was ${utcTime(busiest.start)} to ${utcTime(busiest.end)} UTC with ${fmtInt(busiest.count)} ${busiest.count === 1 ? "commit" : "commits"}.`}
+            ` The busiest hour was ${formatTime(busiest.start)} to ${formatTime(busiest.end)} with ${fmtInt(busiest.count)} ${busiest.count === 1 ? "commit" : "commits"}.`}
         </p>
       </div>
 
@@ -177,7 +183,7 @@ export function RepoPanel({
         <RollingChart stats={stats} />
         <p className="mt-3 max-w-2xl text-xs leading-5 text-muted-foreground">
           Each point counts the commits made in the 48 hours before it — hover
-          anywhere on the line to see the exact count and period. The orange dot
+          anywhere on the line to see the exact count and period. The white dot
           is the current window.
         </p>
       </div>

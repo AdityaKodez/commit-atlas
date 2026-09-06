@@ -49,8 +49,9 @@
 }
 
 /*
- * Dark-only theme. Near-black background with an orange accent, matching the
- * reference dashboard. The same values are applied for both :root and .dark.
+ * Dark-only monochrome theme, matched to the profile picture's white-on-black
+ * palette: near-black background with a white accent and neutral gray ramps.
+ * The same values are applied for both :root and .dark.
  */
 :root {
   --background: #0a0a0b;
@@ -59,8 +60,8 @@
   --card-foreground: #fafafa;
   --popover: #1b1b1f;
   --popover-foreground: #fafafa;
-  --primary: #f97316;
-  --primary-foreground: #180a02;
+  --primary: #fafafa;
+  --primary-foreground: #0a0a0b;
   --secondary: #232328;
   --secondary-foreground: #fafafa;
   --muted: #1a1a1e;
@@ -70,21 +71,21 @@
   --destructive: #f87171;
   --border: rgba(250, 250, 250, 0.1);
   --input: rgba(250, 250, 250, 0.14);
-  --ring: rgba(249, 115, 22, 0.5);
-  --chart-1: #f97316;
-  --chart-2: #6b7280;
+  --ring: rgba(250, 250, 250, 0.5);
+  --chart-1: #fafafa;
+  --chart-2: #71717a;
   --chart-3: #3f3f46;
   --chart-4: #2e2e33;
   --chart-5: #232328;
   --radius: 0.625rem;
   --sidebar: #101013;
   --sidebar-foreground: #fafafa;
-  --sidebar-primary: #f97316;
-  --sidebar-primary-foreground: #180a02;
+  --sidebar-primary: #fafafa;
+  --sidebar-primary-foreground: #0a0a0b;
   --sidebar-accent: #232328;
   --sidebar-accent-foreground: #fafafa;
   --sidebar-border: rgba(250, 250, 250, 0.1);
-  --sidebar-ring: rgba(249, 115, 22, 0.5);
+  --sidebar-ring: rgba(250, 250, 250, 0.5);
 }
 
 .dark {
@@ -94,8 +95,8 @@
   --card-foreground: #fafafa;
   --popover: #1b1b1f;
   --popover-foreground: #fafafa;
-  --primary: #f97316;
-  --primary-foreground: #180a02;
+  --primary: #fafafa;
+  --primary-foreground: #0a0a0b;
   --secondary: #232328;
   --secondary-foreground: #fafafa;
   --muted: #1a1a1e;
@@ -105,21 +106,21 @@
   --destructive: #f87171;
   --border: rgba(250, 250, 250, 0.1);
   --input: rgba(250, 250, 250, 0.14);
-  --ring: rgba(249, 115, 22, 0.5);
-  --chart-1: #f97316;
-  --chart-2: #6b7280;
+  --ring: rgba(250, 250, 250, 0.5);
+  --chart-1: #fafafa;
+  --chart-2: #71717a;
   --chart-3: #3f3f46;
   --chart-4: #2e2e33;
   --chart-5: #232328;
   --radius: 0.625rem;
   --sidebar: #101013;
   --sidebar-foreground: #fafafa;
-  --sidebar-primary: #f97316;
-  --sidebar-primary-foreground: #180a02;
+  --sidebar-primary: #fafafa;
+  --sidebar-primary-foreground: #0a0a0b;
   --sidebar-accent: #232328;
   --sidebar-accent-foreground: #fafafa;
   --sidebar-border: rgba(250, 250, 250, 0.1);
-  --sidebar-ring: rgba(249, 115, 22, 0.5);
+  --sidebar-ring: rgba(250, 250, 250, 0.5);
 }
 
 @layer base {

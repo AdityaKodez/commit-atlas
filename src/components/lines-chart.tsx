@@ -5,11 +5,11 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { utcMonthDay } from "@/lib/format";
+import { formatMonthDay } from "@/lib/format";
 import type { LinesDay } from "@/lib/stats";
 
 /**
- * Diverging bars for the last 14 days: lines added above the axis (orange),
+ * Diverging bars for the last 14 days: lines added above the axis (white),
  * lines removed below (gray). One tooltip per day column.
  */
 export function LinesChart({ days }: { days: LinesDay[] }) {
@@ -36,9 +36,9 @@ export function LinesChart({ days }: { days: LinesDay[] }) {
             </div>
           </TooltipTrigger>
           <TooltipContent>
-            <span className="text-chart-1">+{day.additions}</span>{" "}
+            <span className="font-semibold">+{day.additions}</span>{" "}
             <span className="opacity-60">/ −{day.deletions}</span>
-            <span className="opacity-60"> · {utcMonthDay(day.start)}</span>
+            <span className="opacity-60"> · {formatMonthDay(day.start)}</span>
           </TooltipContent>
         </Tooltip>
       ))}

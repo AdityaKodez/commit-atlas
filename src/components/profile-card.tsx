@@ -3,7 +3,7 @@ import { DeltaChip } from "@/components/delta-chip";
 import { Heatmap } from "@/components/heatmap";
 import { LinesChart } from "@/components/lines-chart";
 import { Punchcard } from "@/components/punchcard";
-import { fmtInt, utcMonthDay } from "@/lib/format";
+import { fmtInt, formatMonthDay } from "@/lib/format";
 import type { Profile } from "@/lib/github";
 import {
   type CalendarCell,
@@ -23,7 +23,7 @@ const DAY_NAMES = [
 
 type PeakHour = { day: string; hour: number; count: number };
 
-/** Busiest weekday-hour cell of the punchcard (rows Mon-first, cols UTC hours). */
+/** Busiest weekday-hour cell of the punchcard (rows Mon-first, cols local hours). */
 function peakHour(grid: number[][]): PeakHour | null {
   let best: { wd: number; hour: number; count: number } | null = null;
   for (let wd = 0; wd < grid.length; wd++) {
@@ -37,7 +37,7 @@ function peakHour(grid: number[][]): PeakHour | null {
   return best ? { day: DAY_NAMES[best.wd], hour: best.hour, count: best.count } : null;
 }
 
-/** The single UTC day with the most commits. */
+/** The single day with the most commits. */
 function busiestDay(weeks: CalendarCell[][]): CalendarCell | null {
   let best: CalendarCell | null = null;
   for (const week of weeks) {
@@ -177,7 +177,7 @@ export function ProfileCard({
           <p className="mt-2 text-sm">
             Your biggest day was{" "}
             <span className="font-semibold text-chart-1">
-              {utcMonthDay(topDay.date)}
+              {formatMonthDay(topDay.date)}
             </span>{" "}
             with{" "}
             <span className="font-semibold text-chart-1 tabular-nums">
@@ -221,7 +221,7 @@ export function ProfileCard({
             When do you code
           </h3>
           <p className="mt-1 text-xs text-muted-foreground">
-            Commits by weekday and hour (UTC) — hover or tap a square.
+            Commits by weekday and hour — hover or tap a square.
           </p>
           {peak && (
             <p className="mt-2 text-sm">
@@ -229,7 +229,7 @@ export function ProfileCard({
               <span className="font-semibold text-chart-1">{peak.day}s</span>{" "}
               around{" "}
               <span className="font-semibold text-chart-1">
-                {pad2(peak.hour)}:00–{pad2((peak.hour + 1) % 24)}:00 UTC
+                {pad2(peak.hour)}:00–{pad2((peak.hour + 1) % 24)}:00
               </span>{" "}
               — {fmtInt(peak.count)}{" "}
               {peak.count === 1 ? "commit" : "commits"} in that hour.

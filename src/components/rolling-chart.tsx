@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
-import { fmtInt, utcMonthDay, utcMonthDayTime } from "@/lib/format";
+import { fmtInt, formatMonthDay, formatMonthDayTime } from "@/lib/format";
 import type { RepoStats } from "@/lib/stats";
 
 const W = 1000;
@@ -9,15 +9,16 @@ const H = 200;
 
 /**
  * Gray line: trailing-48h commit count sampled hourly over the last 14 days.
- * Orange stem + point: the current window. Values above the y-max clamp to the
+ * White stem + point: the current window. Values above the y-max clamp to the
  * top edge. Hovering shows the exact count and period in plain language.
  */
 export function RollingChart({ stats }: { stats: RepoStats }) {
   const [hover, setHover] = useState<number | null>(null);
   const { series, yMax, windowCount } = stats;
   const n = series.length;
+  const safeYMax = Math.max(1, yMax);
 
-  const yPct = (count: number) => (1 - Math.min(count / yMax, 1)) * 100;
+  const yPct = (count: number) => (1 - Math.min(count / safeYMax, 1)) * 100;
   const y = (count: number) => (yPct(count) / 100) * H;
   const x = (i: number) => (i / (n - 1)) * W;
 
@@ -116,7 +117,7 @@ export function RollingChart({ stats }: { stats: RepoStats }) {
                 {fmtInt(hoverPoint.count)}
               </span>{" "}
               {hoverPoint.count === 1 ? "commit" : "commits"} in the 48 hours
-              ending {utcMonthDayTime(hoverPoint.t)} UTC
+              ending {formatMonthDayTime(hoverPoint.t)}
             </div>
           </>
         )}
@@ -148,7 +149,7 @@ export function RollingChart({ stats }: { stats: RepoStats }) {
 
         <div className="absolute top-full left-0 right-0 mt-2 flex justify-between text-[10px] tabular-nums text-muted-foreground">
           {ticks.map((t) => (
-            <span key={t}>{utcMonthDay(t)}</span>
+            <span key={t}>{formatMonthDay(t)}</span>
           ))}
         </div>
       </div>

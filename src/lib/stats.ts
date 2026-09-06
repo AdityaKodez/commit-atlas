@@ -51,7 +51,7 @@ export function dailyBuckets(
   return buckets;
 }
 
-const DAY_MS = 24 * HOUR_MS;
+export const DAY_MS = 24 * HOUR_MS;
 
 /** Count of values with start <= t < end (convenience wrapper). */
 export function countInWindow(times: number[], start: number, end: number): number {
@@ -59,34 +59,65 @@ export function countInWindow(times: number[], start: number, end: number): numb
 }
 
 export type CalendarCell = {
-  /** UTC midnight of the day. */
+  /** Local midnight of the day. */
   date: number;
   count: number;
   /** Cells after today are rendered as invisible spacers. */
   future: boolean;
 };
 
-/** Weeks of 7 cells (Sun..Sat, GitHub-style), last week ends today. */
+/** Weeks of 7 cells (Sun..Sat, GitHub-style), last week ends today, aligned to local calendar days. */
 export function calendarWeeks(
   times: number[],
   now: number,
   days: number,
 ): CalendarCell[][] {
   const sorted = [...times].sort((a, b) => a - b);
-  const todayStart = Math.floor(now / DAY_MS) * DAY_MS;
-  let gridStart = todayStart - (days - 1) * DAY_MS;
-  gridStart -= new Date(gridStart).getUTCDay() * DAY_MS; // back to Sunday
+  const nowDate = new Date(now);
+  const todayStart = new Date(
+    nowDate.getFullYear(),
+    nowDate.getMonth(),
+    nowDate.getDate(),
+  ).getTime();
+
+  const startDate = new Date(
+    nowDate.getFullYear(),
+    nowDate.getMonth(),
+    nowDate.getDate() - (days - 1),
+  );
+  startDate.setDate(startDate.getDate() - startDate.getDay());
 
   const weeks: CalendarCell[][] = [];
-  for (let weekStart = gridStart; weekStart <= todayStart; weekStart += 7 * DAY_MS) {
+  const curr = new Date(
+    startDate.getFullYear(),
+    startDate.getMonth(),
+    startDate.getDate(),
+  );
+
+  while (curr.getTime() <= todayStart) {
     const week: CalendarCell[] = [];
     for (let i = 0; i < 7; i++) {
-      const date = weekStart + i * DAY_MS;
+      const cellStart = new Date(
+        curr.getFullYear(),
+        curr.getMonth(),
+        curr.getDate(),
+      ).getTime();
+      const nextDay = new Date(
+        curr.getFullYear(),
+        curr.getMonth(),
+        curr.getDate() + 1,
+      ).getTime();
+
+      const future = cellStart > todayStart;
+      const count = future ? 0 : countIn(sorted, cellStart, nextDay);
+
       week.push({
-        date,
-        count: date > todayStart ? 0 : countIn(sorted, date, date + DAY_MS),
-        future: date > todayStart,
+        date: cellStart,
+        count,
+        future,
       });
+
+      curr.setDate(curr.getDate() + 1);
     }
     weeks.push(week);
   }
@@ -95,23 +126,44 @@ export function calendarWeeks(
 
 export type Streaks = { current: number; longest: number };
 
-/** Consecutive-UTC-day streaks. Current streak ends today (or yesterday). */
+function toLocalDayStart(t: number): number {
+  const d = new Date(t);
+  return new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime();
+}
+
+function prevLocalDay(t: number): number {
+  const d = new Date(t);
+  return new Date(d.getFullYear(), d.getMonth(), d.getDate() - 1).getTime();
+}
+
+/** Consecutive local calendar-day streaks. Current streak ends today (or yesterday). */
 export function streaks(times: number[], now: number): Streaks {
-  const days = new Set(times.map((t) => Math.floor(t / DAY_MS)));
-  const today = Math.floor(now / DAY_MS);
+  const daySet = new Set(times.map(toLocalDayStart));
+  const today = toLocalDayStart(now);
+  const yesterday = prevLocalDay(today);
 
   let current = 0;
-  let cursor = days.has(today) ? today : today - 1;
-  while (days.has(cursor)) {
+  let cursor: number | null = daySet.has(today)
+    ? today
+    : daySet.has(yesterday)
+      ? yesterday
+      : null;
+
+  while (cursor !== null && daySet.has(cursor)) {
     current += 1;
-    cursor -= 1;
+    cursor = prevLocalDay(cursor);
   }
 
+  const sortedDays = Array.from(daySet).sort((a, b) => a - b);
   let longest = 0;
   let run = 0;
   let prev = NaN;
-  for (const day of [...days].sort((a, b) => a - b)) {
-    run = day === prev + 1 ? run + 1 : 1;
+  for (const day of sortedDays) {
+    if (run > 0 && prevLocalDay(day) === prev) {
+      run += 1;
+    } else {
+      run = 1;
+    }
     if (run > longest) longest = run;
     prev = day;
   }
@@ -119,12 +171,13 @@ export function streaks(times: number[], now: number): Streaks {
   return { current, longest };
 }
 
-/** 7×24 matrix of commit counts; rows Monday-first, cols UTC hours. */
+/** 7×24 matrix of commit counts; rows Monday-first, cols local hours. */
 export function hourWeekday(times: number[]): number[][] {
   const grid: number[][] = Array.from({ length: 7 }, () => Array(24).fill(0));
   for (const t of times) {
     const d = new Date(t);
-    grid[(d.getUTCDay() + 6) % 7][d.getUTCHours()] += 1;
+    const mondayFirstDay = (d.getDay() + 6) % 7;
+    grid[mondayFirstDay][d.getHours()] += 1;
   }
   return grid;
 }
@@ -136,25 +189,58 @@ export type LinesDay = {
   deletions: number;
 };
 
-/** `days` rolling daily buckets of line counts (commits without stats are skipped). */
+/** `days` calendar daily buckets of line counts (commits without stats are skipped). */
 export function linesDaily(
   commitStats: Array<{ t: number; additions: number; deletions: number }>,
   now: number,
   days: number,
 ): LinesDay[] {
-  const firstStart = now - days * DAY_MS;
-  const buckets = Array.from({ length: days }, (_, i) => ({
-    start: firstStart + i * DAY_MS,
-    end: firstStart + (i + 1) * DAY_MS,
-    additions: 0,
-    deletions: 0,
-  }));
-  for (const c of commitStats) {
-    const idx = Math.floor((c.t - firstStart) / DAY_MS);
-    if (idx < 0 || idx >= days) continue;
-    buckets[idx].additions += c.additions;
-    buckets[idx].deletions += c.deletions;
+  const nowDate = new Date(now);
+  const startDate = new Date(
+    nowDate.getFullYear(),
+    nowDate.getMonth(),
+    nowDate.getDate() - (days - 1),
+  );
+
+  const buckets: LinesDay[] = [];
+  const curr = new Date(
+    startDate.getFullYear(),
+    startDate.getMonth(),
+    startDate.getDate(),
+  );
+
+  for (let i = 0; i < days; i++) {
+    const start = new Date(
+      curr.getFullYear(),
+      curr.getMonth(),
+      curr.getDate(),
+    ).getTime();
+    const end = new Date(
+      curr.getFullYear(),
+      curr.getMonth(),
+      curr.getDate() + 1,
+    ).getTime();
+
+    buckets.push({
+      start,
+      end,
+      additions: 0,
+      deletions: 0,
+    });
+
+    curr.setDate(curr.getDate() + 1);
   }
+
+  for (const c of commitStats) {
+    for (const b of buckets) {
+      if (c.t >= b.start && c.t < b.end) {
+        b.additions += c.additions;
+        b.deletions += c.deletions;
+        break;
+      }
+    }
+  }
+
   return buckets;
 }
 
@@ -216,11 +302,12 @@ function percentile(sorted: number[], q: number): number {
 
 /** Smaller step values give the chart headroom for the "now" point, like the reference. */
 function niceYMax(value: number): number {
+  const safe = Math.max(0, value);
   const steps = [10, 20, 25, 50, 100, 150, 200, 300, 400, 500, 750, 1000, 2000, 5000];
   for (const step of steps) {
-    if (step >= value * 1.5) return step;
+    if (step >= safe * 1.5) return step;
   }
-  return Math.ceil((value * 1.5) / 1000) * 1000;
+  return Math.ceil((safe * 1.5) / 1000) * 1000;
 }
 
 export function computeStats(times: number[], now: number): RepoStats {

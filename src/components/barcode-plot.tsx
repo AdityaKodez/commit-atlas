@@ -5,7 +5,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { utcTime } from "@/lib/format";
+import { formatTime } from "@/lib/format";
 import type { Commit } from "@/lib/github";
 
 /**
@@ -27,28 +27,29 @@ export function BarcodePlot({
   }
 
   return (
-    <div className="relative h-24 w-full sm:h-28" role="list">
+    <ul className="relative h-24 w-full list-none p-0 m-0 sm:h-28">
       {commits.map((commit) => (
-        <Tooltip key={commit.sha}>
-          <TooltipTrigger asChild>
-            <a
-              role="listitem"
-              href={commit.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={commit.message}
-              className="absolute top-0 h-full w-[3px] -translate-x-1/2 bg-chart-1 transition-colors hover:bg-foreground focus-visible:bg-foreground focus-visible:outline-none"
-              style={{ left: `${commit.pct}%` }}
-            />
-          </TooltipTrigger>
-          <TooltipContent className="flex max-w-72 flex-col gap-1">
-            <span className="line-clamp-3 font-medium">{commit.message}</span>
-            <span className="opacity-60">
-              {commit.author} · {utcTime(commit.committedAt)} UTC
-            </span>
-          </TooltipContent>
-        </Tooltip>
+        <li key={commit.sha} className="list-none">
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <a
+                href={commit.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={commit.message}
+                className="absolute top-0 h-full w-[3px] -translate-x-1/2 bg-chart-1 transition-colors hover:bg-foreground focus-visible:bg-foreground focus-visible:outline-none"
+                style={{ left: `${commit.pct}%` }}
+              />
+            </TooltipTrigger>
+            <TooltipContent className="flex max-w-72 flex-col gap-1">
+              <span className="line-clamp-3 font-medium">{commit.message}</span>
+              <span className="opacity-60">
+                {commit.author} · {formatTime(commit.committedAt)}
+              </span>
+            </TooltipContent>
+          </Tooltip>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }

@@ -15,7 +15,11 @@ export const metadata: Metadata = {
     "A dark, data-dense dashboard of commit activity across multiple GitHub repositories: 48-hour windows, 14-day rolling baselines, dot matrices and barcode plots.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" className={`${workSans.variable} dark h-full antialiased`}>
       <body className="flex min-h-full flex-col">

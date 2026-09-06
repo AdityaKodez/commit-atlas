@@ -7,14 +7,14 @@ const DAY_LABELS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 function level(count: number, max: number): string {
   if (count <= 0) return "bg-[#1b1b1f]";
   const frac = count / max;
-  if (frac <= 0.25) return "bg-[#7c2d12]";
-  if (frac <= 0.5) return "bg-[#c2410c]";
-  if (frac <= 0.75) return "bg-[#ea580c]";
-  return "bg-[#f97316]";
+  if (frac <= 0.25) return "bg-[#2e2e33]";
+  if (frac <= 0.5) return "bg-[#52525b]";
+  if (frac <= 0.75) return "bg-[#a1a1aa]";
+  return "bg-[#fafafa]";
 }
 
 /**
- * "When do you code": rows = weekdays (Mon-first), cols = UTC hours, cell
+ * "When do you code": rows = weekdays (Mon-first), cols = local hours, cell
  * intensity = commits. One shared viewport-fixed tooltip via event delegation.
  * Fully fluid — no min-width scroll on mobile; pointerdown covers touch.
  */
@@ -78,7 +78,7 @@ export function Punchcard({ grid }: { grid: number[][] }) {
               {grid[wd].map((count, h) => (
                 <div
                   key={h}
-                  data-tip={`${count} commit${count === 1 ? "" : "s"} · ${label} ${String(h).padStart(2, "0")}:00–${String((h + 1) % 24).padStart(2, "0")}:00 UTC`}
+                  data-tip={`${count} commit${count === 1 ? "" : "s"} · ${label} ${String(h).padStart(2, "0")}:00–${String((h + 1) % 24).padStart(2, "0")}:00`}
                   className={`aspect-square rounded-[2px] transition-colors ${level(count, max)}`}
                 />
               ))}

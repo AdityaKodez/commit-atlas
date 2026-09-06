@@ -90,7 +90,7 @@ function ghUrl(pathname: string, params?: Record<string, string>): URL {
   return url;
 }
 
-type GitHubUser = {
+export type GitHubUser = {
   login: string;
   name: string | null;
   avatar_url: string;
@@ -98,7 +98,7 @@ type GitHubUser = {
   html_url: string;
 };
 
-type GitHubRepo = {
+export type GitHubRepo = {
   name: string;
   fork: boolean;
   archived: boolean;
@@ -106,7 +106,7 @@ type GitHubRepo = {
   owner: { login: string };
 };
 
-type GitHubApiCommit = {
+export type GitHubApiCommit = {
   sha: string;
   html_url: string;
   author: { login: string } | null;
@@ -193,28 +193,38 @@ async function fetchRepoCommits(
   const owner = segment(config.owner, "owner");
   const repo = segment(config.repo, "repo");
   const commits: Commit[] = [];
-  for (let page = 1; page <= 20; page++) {
-    const batch = await gh<GitHubApiCommit[]>(
-      ghUrl(`/repos/${owner}/${repo}/commits`, {
-        per_page: "100",
-        since,
-        page: String(page),
-      }),
-    );
-    for (const c of batch) {
-      commits.push({
-        sha: c.sha,
-        message: (c.commit.message.split("\n")[0] ?? "").slice(0, 200),
-        author: c.commit.author?.name ?? "unknown",
-        authorLogin: c.author?.login ?? null,
-        committedAt:
-          c.commit.committer?.date ??
-          c.commit.author?.date ??
-          new Date(0).toISOString(),
-        url: c.html_url,
-      });
+  try {
+    for (let page = 1; page <= 20; page++) {
+      const batch = await gh<GitHubApiCommit[]>(
+        ghUrl(`/repos/${owner}/${repo}/commits`, {
+          per_page: "100",
+          since,
+          page: String(page),
+        }),
+      );
+      if (!Array.isArray(batch)) break;
+      for (const c of batch) {
+        if (!c || !c.commit) continue;
+        commits.push({
+          sha: c.sha,
+          message: (c.commit.message?.split("\n")[0] ?? "").slice(0, 200),
+          author: c.commit.author?.name ?? "unknown",
+          authorLogin: c.author?.login ?? null,
+          committedAt:
+            c.commit.committer?.date ??
+            c.commit.author?.date ??
+            new Date(0).toISOString(),
+          url: c.html_url,
+        });
+      }
+      if (batch.length < 100) break;
     }
-    if (batch.length < 100) break;
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : "";
+    if (msg.includes("409") || msg.includes("404")) {
+      return [];
+    }
+    throw err;
   }
   return commits;
 }
