@@ -1,3 +1,6 @@
+import "server-only";
+
+import { unstable_cache } from "next/cache";
 import snapshotJson from "@/data/snapshot.json";
 import {
   CONFIG,
@@ -100,6 +103,7 @@ export type GitHubUser = {
 
 export type GitHubRepo = {
   name: string;
+  private: boolean;
   fork: boolean;
   archived: boolean;
   disabled: boolean;
@@ -131,7 +135,7 @@ function apiHeaders(): HeadersInit {
 async function gh<T>(url: URL): Promise<T> {
   const res = await fetch(url, {
     headers: apiHeaders(),
-    next: { revalidate: 1800, tags: ["github"] },
+    cache: "no-store",
   });
   if (!res.ok) {
     throw new Error(`GitHub API ${res.status} for ${url.pathname}`);
@@ -149,15 +153,15 @@ function toProfile(u: GitHubUser): Profile {
   };
 }
 
-/** Profile of the token's user, or of CONFIG.username via the public API. */
+/** Profile configured by username, or the token owner when username is empty. */
 async function getLiveProfile(): Promise<Profile | null> {
   try {
-    if (process.env.GITHUB_TOKEN) {
-      return toProfile(await gh<GitHubUser>(ghUrl("/user")));
-    }
     if (CONFIG.username) {
       const path = `/users/${segment(CONFIG.username, "username")}`;
       return toProfile(await gh<GitHubUser>(ghUrl(path)));
+    }
+    if (process.env.GITHUB_TOKEN) {
+      return toProfile(await gh<GitHubUser>(ghUrl("/user")));
     }
     return null;
   } catch {
@@ -167,9 +171,9 @@ async function getLiveProfile(): Promise<Profile | null> {
 
 /** The profile's own repositories, most recently pushed first. */
 async function discoverRepos(profile: Profile): Promise<RepoConfig[]> {
-  const path = process.env.GITHUB_TOKEN
-    ? "/user/repos"
-    : `/users/${segment(profile.login, "login")}/repos`;
+  const path = CONFIG.username || !process.env.GITHUB_TOKEN
+    ? `/users/${segment(profile.login, "login")}/repos`
+    : "/user/repos";
   const list = await gh<GitHubRepo[]>(
     ghUrl(path, {
       sort: "pushed",
@@ -180,10 +184,20 @@ async function discoverRepos(profile: Profile): Promise<RepoConfig[]> {
   );
   return list
     .filter(
-      (r) => !r.archived && !r.disabled && (CONFIG.includeForks || !r.fork),
+      (r) =>
+        !r.private &&
+        !r.archived &&
+        !r.disabled &&
+        (CONFIG.includeForks || !r.fork),
     )
     .slice(0, CONFIG.maxRepos)
     .map((r) => ({ owner: r.owner.login, repo: r.name }));
+}
+
+async function fetchRepoMetadata(config: RepoConfig): Promise<GitHubRepo> {
+  const owner = segment(config.owner, "owner");
+  const repo = segment(config.repo, "repo");
+  return gh<GitHubRepo>(ghUrl(`/repos/${owner}/${repo}`));
 }
 
 async function fetchRepoCommits(
@@ -221,7 +235,7 @@ async function fetchRepoCommits(
     }
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : "";
-    if (msg.includes("409") || msg.includes("404")) {
+    if (msg.includes("409")) {
       return [];
     }
     throw err;
@@ -229,47 +243,38 @@ async function fetchRepoCommits(
   return commits;
 }
 
-/**
- * Fill in additions/deletions for the profile's own commits in the lines
- * window, in place. One detail call per commit, capped by `budget.left`.
- */
+/** Fill line counts for a deterministic, pre-selected set of commits. */
 async function hydrateCommitStats(
   config: RepoConfig,
   commits: Commit[],
-  profile: Profile,
-  linesWindowStart: number,
-  budget: { left: number },
 ): Promise<void> {
   const owner = segment(config.owner, "owner");
   const repo = segment(config.repo, "repo");
-  const mine = commits.filter(
-    (c) =>
-      isMine(c, profile) &&
-      c.additions === undefined &&
-      Date.parse(c.committedAt) >= linesWindowStart,
-  );
-  const workers = Array.from({ length: Math.min(12, mine.length) }, async () => {
-    while (mine.length > 0 && budget.left > 0) {
-      const commit = mine.shift();
-      if (!commit) break;
-      budget.left -= 1;
-      try {
-        const detail = await gh<{
-          stats?: { additions: number; deletions: number };
-        }>(
-          ghUrl(
-            `/repos/${owner}/${repo}/commits/${segment(commit.sha, "sha")}`,
-          ),
-        );
-        if (detail.stats) {
-          commit.additions = detail.stats.additions;
-          commit.deletions = detail.stats.deletions;
+  const queue = [...commits];
+  const workers = Array.from(
+    { length: Math.min(12, queue.length) },
+    async () => {
+      while (queue.length > 0) {
+        const commit = queue.shift();
+        if (!commit) break;
+        try {
+          const detail = await gh<{
+            stats?: { additions: number; deletions: number };
+          }>(
+            ghUrl(
+              `/repos/${owner}/${repo}/commits/${segment(commit.sha, "sha")}`,
+            ),
+          );
+          if (detail.stats) {
+            commit.additions = detail.stats.additions;
+            commit.deletions = detail.stats.deletions;
+          }
+        } catch {
+          // Line counts are best-effort; the commit itself stays.
         }
-      } catch {
-        // Line counts are best-effort; the commit itself stays.
       }
-    }
-  });
+    },
+  );
   await Promise.all(workers);
 }
 
@@ -277,16 +282,60 @@ type Snapshot = {
   fetchedAt: string;
   user: Profile | null;
   repoSlugs: string[];
+  publicRepoSlugs: string[];
   repos: Record<string, Commit[] | undefined>;
 };
 
-function loadSnapshot(): Snapshot {
-  const raw = snapshotJson as unknown as Partial<Snapshot> | null;
+/** Accept both old raw GitHub users and the normalized snapshot schema. */
+function normalizeSnapshotProfile(value: unknown): Profile | null {
+  if (!value || typeof value !== "object") return null;
+  const user = value as Record<string, unknown>;
+  const login = typeof user.login === "string" ? user.login : "";
+  const avatarUrl =
+    typeof user.avatarUrl === "string"
+      ? user.avatarUrl
+      : typeof user.avatar_url === "string"
+        ? user.avatar_url
+        : "";
+  const url =
+    typeof user.url === "string" && !user.url.startsWith("https://api.github.com/")
+      ? user.url
+      : typeof user.html_url === "string"
+        ? user.html_url
+        : "";
+  if (!login || !avatarUrl || !url) return null;
   return {
-    fetchedAt: raw?.fetchedAt ?? "",
-    user: raw?.user ?? null,
-    repoSlugs: raw?.repoSlugs ?? [],
-    repos: raw?.repos ?? {},
+    login,
+    name: typeof user.name === "string" ? user.name : null,
+    avatarUrl,
+    bio: typeof user.bio === "string" ? user.bio : null,
+    url,
+  };
+}
+
+function loadSnapshot(): Snapshot {
+  const raw = snapshotJson as unknown as {
+    fetchedAt?: unknown;
+    user?: unknown;
+    repoSlugs?: unknown;
+    publicRepoSlugs?: unknown;
+    repos?: unknown;
+  } | null;
+  return {
+    fetchedAt: typeof raw?.fetchedAt === "string" ? raw.fetchedAt : "",
+    user: normalizeSnapshotProfile(raw?.user),
+    repoSlugs: Array.isArray(raw?.repoSlugs)
+      ? raw.repoSlugs.filter((slug): slug is string => typeof slug === "string")
+      : [],
+    publicRepoSlugs: Array.isArray(raw?.publicRepoSlugs)
+      ? raw.publicRepoSlugs.filter(
+          (slug): slug is string => typeof slug === "string",
+        )
+      : [],
+    repos:
+      raw?.repos && typeof raw.repos === "object"
+        ? (raw.repos as Record<string, Commit[] | undefined>)
+        : {},
   };
 }
 
@@ -295,8 +344,8 @@ function parseFullName(fullName: string): RepoConfig | null {
   return owner && repo ? { owner, repo } : null;
 }
 
-function snapshotCommits(config: RepoConfig): Commit[] {
-  return loadSnapshot().repos[repoFullName(config)] ?? [];
+function snapshotCommits(snapshot: Snapshot, config: RepoConfig): Commit[] {
+  return snapshot.repos[repoFullName(config)] ?? [];
 }
 
 /**
@@ -305,7 +354,7 @@ function snapshotCommits(config: RepoConfig): Commit[] {
  * `npm run snapshot`) when the GitHub API is unreachable or rate-limited, so
  * the page never renders empty.
  */
-export async function getSiteData(): Promise<SiteData> {
+export async function getSiteData(requireLive = false): Promise<SiteData> {
   const now = Date.now();
   const since = new Date(
     now - Math.max(17, CONFIG.activityDays) * 24 * 3_600_000,
@@ -313,65 +362,150 @@ export async function getSiteData(): Promise<SiteData> {
   const linesWindowStart = now - 14 * 24 * 3_600_000;
   const snapshot = loadSnapshot();
 
+  const profileExpected = Boolean(CONFIG.username || process.env.GITHUB_TOKEN);
   let profile = await getLiveProfile();
+  let profileLive = profile !== null || !profileExpected;
   if (!profile && snapshot.user) {
     profile = snapshot.user;
+    profileLive = false;
   }
 
   let configs: RepoConfig[] = CONFIG.repos;
+  let configsLive = true;
   if (configs.length === 0 && CONFIG.autoDiscoverRepos) {
+    let discovered: RepoConfig[] | null = null;
     if (profile) {
       try {
-        configs = await discoverRepos(profile);
+        discovered = await discoverRepos(profile);
       } catch {
-        configs = [];
+        // Only a failed request uses snapshot repository names. A valid empty
+        // response must stay empty instead of reviving old repositories.
       }
     }
-    if (configs.length === 0 && snapshot.repoSlugs.length > 0) {
-      configs = snapshot.repoSlugs
+    if (discovered !== null) {
+      configs = discovered;
+    } else {
+      configsLive = false;
+      configs = snapshot.publicRepoSlugs
         .map(parseFullName)
-        .filter((c): c is RepoConfig => c !== null);
+        .filter((config): config is RepoConfig => config !== null);
     }
   }
 
-  const budget = {
-    left: process.env.GITHUB_TOKEN ? 250 : 25,
-  };
-
-  const repos: RepoData[] = await Promise.all(
-    configs.map(async (config): Promise<RepoData> => {
-      let commits: Commit[];
-      let stale = false;
+  let repoLoadIncomplete = false;
+  const loadedRepos = await Promise.all(
+    configs.map(async (config): Promise<RepoData | null> => {
+      const fullName = repoFullName(config);
+      let publicVerified = snapshot.publicRepoSlugs.includes(fullName);
       try {
-        commits = await fetchRepoCommits(config, since);
+        const metadata = await fetchRepoMetadata(config);
+        if (metadata.private) return null;
+        publicVerified = true;
       } catch {
-        commits = snapshotCommits(config);
-        stale = true;
+        // A snapshot may only be served when its generator recorded that the
+        // repository was public. Unknown visibility is omitted by default.
+        if (!publicVerified) {
+          repoLoadIncomplete = true;
+          return null;
+        }
       }
-      if (profile && !stale && budget.left > 0) {
-        await hydrateCommitStats(
+
+      try {
+        const commits = await fetchRepoCommits(config, since);
+        return {
           config,
+          slug: repoSlug(config),
+          name: repoLabel(config),
           commits,
-          profile,
-          linesWindowStart,
-          budget,
-        );
+          stale: false,
+        };
+      } catch {
+        if (!publicVerified) return null;
+        return {
+          config,
+          slug: repoSlug(config),
+          name: repoLabel(config),
+          commits: snapshotCommits(snapshot, config),
+          stale: true,
+        };
       }
-      return {
-        config,
-        slug: repoSlug(config),
-        name: repoLabel(config),
-        commits,
-        stale,
-      };
     }),
   );
+  const repos = loadedRepos.filter((repo): repo is RepoData => repo !== null);
 
-  return {
+  if (profile) {
+    const detailLimit = process.env.GITHUB_TOKEN ? 250 : 25;
+    const selected = repos
+      .filter((repo) => !repo.stale)
+      .flatMap((repo) =>
+        repo.commits
+          .filter(
+            (commit) =>
+              isMine(commit, profile) &&
+              commit.additions === undefined &&
+              Date.parse(commit.committedAt) >= linesWindowStart,
+          )
+          .map((commit) => ({ repo, commit })),
+      )
+      .sort((a, b) => {
+        const byDate =
+          Date.parse(b.commit.committedAt) - Date.parse(a.commit.committedAt);
+        return byDate || a.commit.sha.localeCompare(b.commit.sha);
+      })
+      .slice(0, detailLimit);
+
+    const byRepo = new Map<string, { config: RepoConfig; commits: Commit[] }>();
+    for (const { repo, commit } of selected) {
+      const key = repoFullName(repo.config);
+      const group = byRepo.get(key) ?? { config: repo.config, commits: [] };
+      group.commits.push(commit);
+      byRepo.set(key, group);
+    }
+    await Promise.all(
+      [...byRepo.values()].map(({ config, commits }) =>
+        hydrateCommitStats(config, commits),
+      ),
+    );
+  }
+
+  const site: SiteData = {
     profile,
     repos,
-    live: repos.every((r) => !r.stale),
+    live:
+      profileLive &&
+      configsLive &&
+      !repoLoadIncomplete &&
+      repos.every((repo) => !repo.stale),
     snapshotAt: snapshot.fetchedAt,
     now,
   };
+  if (requireLive && !site.live) {
+    throw new Error("GitHub did not return a complete live aggregate");
+  }
+  return site;
+}
+
+const getCachedLiveSiteData = unstable_cache(
+  () => getSiteData(true),
+  ["github-site-live-v1"],
+  { revalidate: 600, tags: ["github-site"] },
+);
+
+const getCachedFallbackSiteData = unstable_cache(
+  () => getSiteData(),
+  ["github-site-fallback-v1"],
+  { revalidate: 60, tags: ["github-site-fallback"] },
+);
+
+/**
+ * The long-lived cache only accepts complete live aggregates. Failed
+ * revalidations therefore keep the previous good value; snapshot-backed data
+ * is cached briefly and used only when no live aggregate is available.
+ */
+export async function getCachedSiteData(): Promise<SiteData> {
+  try {
+    return await getCachedLiveSiteData();
+  } catch {
+    return getCachedFallbackSiteData();
+  }
 }

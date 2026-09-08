@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { DashboardSkeleton } from "@/components/dashboard-skeleton";
 import { PillNav } from "@/components/pill-nav";
 import { ProfileCard } from "@/components/profile-card";
 import { RepoPanel } from "@/components/repo-panel";
@@ -11,17 +10,18 @@ import { computeStats } from "@/lib/stats";
 import { buildProfileSummary } from "@/lib/summary";
 import type { SiteData } from "@/lib/github";
 
-type RefreshState = "build" | "loading" | "live" | "offline";
+type RefreshState = "cached" | "loading" | "live" | "offline";
 
 const REFRESH_MS = 10 * 60_000;
 
 function useDashboardData(initial: SiteData) {
   const [site, setSite] = useState(initial);
   const [refreshState, setRefreshState] = useState<RefreshState>(
-    initial.live ? "live" : "build",
+    initial.live ? "live" : "cached",
   );
   const [now, setNow] = useState(() => Date.now());
   const refreshing = useRef(false);
+  const siteRef = useRef(initial);
 
   // Keep time synced with client clock
   useEffect(() => {
@@ -38,30 +38,34 @@ function useDashboardData(initial: SiteData) {
     const fresh = await fetchLiveSiteData();
     refreshing.current = false;
     if (fresh) {
+      const current = siteRef.current;
+      const older = fresh.now < current.now;
+      const downgradesLiveData = current.live && !fresh.live;
+      if (older || downgradesLiveData) {
+        setRefreshState(current.live ? "live" : "cached");
+        return;
+      }
+      siteRef.current = fresh;
       setSite(fresh);
       setNow(Date.now());
-      setRefreshState("live");
+      setRefreshState(fresh.live ? "live" : "cached");
     } else {
       setRefreshState("offline");
     }
   }, []);
 
   useEffect(() => {
-    // Only trigger immediate live fetch on mount if initial data was from snapshot
-    if (!initial.live) {
-      const timer = setTimeout(() => {
-        void refresh();
-      }, 0);
-      const intervalId = setInterval(() => void refresh(), REFRESH_MS);
-      return () => {
-        clearTimeout(timer);
-        clearInterval(intervalId);
-      };
-    }
-
+    // Check immediately so a long-lived page does not wait another interval.
+    // The existing dashboard remains visible while the backend responds.
+    const timer = setTimeout(() => {
+      void refresh();
+    }, 0);
     const intervalId = setInterval(() => void refresh(), REFRESH_MS);
-    return () => clearInterval(intervalId);
-  }, [initial.live, refresh]);
+    return () => {
+      clearTimeout(timer);
+      clearInterval(intervalId);
+    };
+  }, [refresh]);
 
   return { site, refreshState, now };
 }
@@ -72,11 +76,6 @@ function useDashboardData(initial: SiteData) {
  */
 export function SiteView({ initial }: { initial: SiteData }) {
   const { site, refreshState, now } = useDashboardData(initial);
-
-  // If initial data is not live and we are in initial loading, show the loading skeleton
-  if (!initial.live && refreshState === "loading" && !site.live) {
-    return <DashboardSkeleton />;
-  }
 
   const profile = site.profile;
   /**
@@ -139,21 +138,21 @@ export function SiteView({ initial }: { initial: SiteData }) {
         <p className="border-t border-border/60 pt-6 text-xs leading-5 text-muted-foreground">
           Data from the GitHub REST API (default branch).{" "}
           {refreshState === "live"
-            ? "Live — refreshed in your browser, checks again every 10 minutes."
+            ? "Live from the backend — checks for GitHub updates every 10 minutes."
             : refreshState === "loading"
-              ? "Refreshing from GitHub…"
+              ? "Checking the backend for GitHub updates…"
               : refreshState === "offline"
-                ? "Live refresh unavailable right now — showing the last data that loaded."
-                : "Loading live data…"}
-          {!site.live && (
+                ? "Backend refresh unavailable right now — showing the last complete response."
+                : "The backend is serving cached fallback data and will retry automatically."}
+          {!site.live && site.snapshotAt && (
             <>
               {" "}
-              Some repositories show a cached snapshot generated{" "}
-              {formatMonthDayTime(site.snapshotAt)} — run{" "}
+              Cached data was generated {formatMonthDayTime(site.snapshotAt)};
+              run{" "}
               <code className="rounded bg-muted px-1 py-0.5">
                 npm run snapshot
               </code>{" "}
-              to refresh it.
+              to replace the offline fallback.
             </>
           )}
         </p>
