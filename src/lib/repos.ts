@@ -10,7 +10,7 @@ export type RepoConfig = {
 export type SiteConfig = {
   /**
    * GitHub username for the profile card. Leave empty ("") to resolve it from
-   * GITHUB_TOKEN (recommended — then private repos can be discovered too).
+   * GITHUB_TOKEN. Only public repositories are displayed.
    */
   username: string;
   /**

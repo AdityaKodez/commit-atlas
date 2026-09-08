@@ -15,7 +15,16 @@ npm install
 npm run dev        # http://localhost:3000
 ```
 
-Production: `npm run build && npm start`.
+Production requires a host that runs the Next.js server (static export is not
+supported):
+
+```bash
+npm run build
+npm start
+```
+
+The browser only calls the same-origin `/api/site` backend. GitHub credentials
+and raw GitHub API access remain server-side.
 
 ## Connect your GitHub (required)
 
@@ -23,8 +32,9 @@ The site loads your profile and discovers your repositories automatically from
 a GitHub token:
 
 1. Create a personal access token at <https://github.com/settings/tokens>
-   (classic) — no scopes needed for public repos only; add the `repo` scope to
-   include private ones.
+   (classic) with **no scopes**. Commit Atlas is a public dashboard and
+   intentionally excludes private repositories, even if a broader token is
+   supplied.
 2. Create a `.env.local` file in the project root (gitignored, never committed):
 
    ```
@@ -60,18 +70,28 @@ code. Without it the page shows a setup guide.
 
 ## Data & resilience
 
-- Commits are read from each repo's **default branch**; the page revalidates
-  every **30 minutes** (ISR — `export const revalidate` in
-  `src/app/page.tsx`).
+- The initial page and browser refreshes use one canonical backend loader via
+  `/api/site`; there is no separate browser-side GitHub implementation or
+  general-purpose GitHub proxy. The endpoint only returns public repositories
+  and is never shared-cacheable.
+- The complete aggregate is cached server-side and revalidated every **10
+  minutes**, so all visitors see one coherent profile/repository result while
+  GitHub API usage stays bounded.
+- Commits are read from each repo's **default branch**.
 - Lines added/removed come from one detail call per commit of yours in the
-  last 14 days (capped at 250 with a token, 25 without; tokenless runs may
-  therefore show "unavailable").
-- If the API is unreachable or rate-limited, the page falls back to
-  `src/data/snapshot.json` so it never renders empty. Refresh it any time:
+  last 14 days (deterministically capped at the newest 250 with a token, 25
+  without; tokenless runs may therefore show "unavailable").
+- If GitHub is unreachable or rate-limited, the backend falls back per
+  repository to `src/data/snapshot.json` and the UI keeps the last complete
+  response instead of replacing it with partial/empty data. Refresh the
+  offline fallback any time:
 
   ```bash
   npm run snapshot
   ```
+
+  Snapshot generation is atomic: if any required GitHub request fails, the
+  previous file is left unchanged.
 
 - All timestamps are shown in **UTC**.
 
