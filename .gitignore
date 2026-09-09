@@ -44,3 +44,6 @@ next-env.d.ts
 .herenow/
 .mimosa/
 .playwright-mcp/
+.superpowers/
+
+.vercel

@@ -78,7 +78,7 @@ export function ProfileCard({
     <section
       id="profile"
       aria-label="Your profile"
-      className="scroll-mt-16 py-12 sm:py-14"
+      className="py-12 sm:py-14"
     >
       <div className="flex flex-wrap items-center gap-5">
         <Image
@@ -92,14 +92,17 @@ export function ProfileCard({
           <h1 className="text-xl font-bold tracking-tight sm:text-2xl">
             {profile.name ?? profile.login}
           </h1>
-          <a
-            href={profile.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-          >
-            @{profile.login}
-          </a>
+          <p className="text-sm text-muted-foreground">
+            <a
+              href={profile.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-foreground"
+            >
+              @{profile.login}
+            </a>
+            <span> · Commit Atlas</span>
+          </p>
           {profile.bio && (
             <p className="mt-1 max-w-xl text-sm leading-5 text-muted-foreground">
               {profile.bio}
@@ -155,24 +158,18 @@ export function ProfileCard({
           <h3 className="text-sm font-semibold sm:text-base">
             Commit activity, last 6 months
           </h3>
-          <div className="flex gap-2">
-            <span className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">
-              current streak{" "}
-              <span className="ml-1 font-semibold text-chart-1 tabular-nums">
-                {fmtInt(summary.streaks.current)}d
-              </span>
+          <p className="text-xs text-muted-foreground sm:text-sm">
+            current streak{" "}
+            <span className="font-semibold text-chart-1 tabular-nums">
+              {fmtInt(summary.streaks.current)}d
             </span>
-            <span className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">
-              longest{" "}
-              <span className="ml-1 font-semibold text-foreground tabular-nums">
-                {fmtInt(summary.streaks.longest)}d
-              </span>
+            {" · "}
+            longest{" "}
+            <span className="font-semibold text-foreground tabular-nums">
+              {fmtInt(summary.streaks.longest)}d
             </span>
-          </div>
+          </p>
         </div>
-        <p className="mt-1 text-xs text-muted-foreground">
-          One square per day — hover or tap for the exact count.
-        </p>
         {topDay && topDay.count > 0 && (
           <p className="mt-2 text-sm">
             Your biggest day was{" "}
@@ -196,15 +193,11 @@ export function ProfileCard({
           <h3 className="text-sm font-semibold sm:text-base">
             Lines per day, last 14 days
           </h3>
-          <p className="mt-1 text-xs text-muted-foreground">
-            {summary.linesComplete ? (
-              <>
-                Added up, removed down — hover a column for numbers.
-              </>
-            ) : (
-              "Line stats unavailable for some commits in this window."
-            )}
-          </p>
+          {!summary.linesComplete && (
+            <p className="mt-1 text-xs text-muted-foreground">
+              Line stats unavailable for some commits in this window.
+            </p>
+          )}
           <div className="mt-4">
             {summary.linesComplete ? (
               <LinesChart days={summary.linesDays} />
@@ -220,9 +213,6 @@ export function ProfileCard({
           <h3 className="text-sm font-semibold sm:text-base">
             When do you code
           </h3>
-          <p className="mt-1 text-xs text-muted-foreground">
-            Commits by weekday and hour — hover or tap a square.
-          </p>
           {peak && (
             <p className="mt-2 text-sm">
               You commit the most on{" "}
@@ -240,23 +230,6 @@ export function ProfileCard({
           </div>
         </div>
       </div>
-
-      {summary.perRepo.length > 0 && (
-        <div className="mt-4 flex flex-wrap gap-2">
-          {summary.perRepo.map((repo) => (
-            <a
-              key={repo.slug}
-              href={`#${repo.slug}`}
-              className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground"
-            >
-              {repo.name}
-              <span className="ml-1.5 tabular-nums text-chart-1">
-                {fmtInt(repo.count)}
-              </span>
-            </a>
-          ))}
-        </div>
-      )}
     </section>
   );
 }

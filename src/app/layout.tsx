@@ -12,7 +12,7 @@ const workSans = Work_Sans({
 export const metadata: Metadata = {
   title: "Commit Atlas — commit activity across repositories",
   description:
-    "A dark, data-dense dashboard of commit activity across multiple GitHub repositories: 48-hour windows, 14-day rolling baselines, dot matrices and barcode plots.",
+    "A dark, data-dense dashboard of commit activity across multiple GitHub repositories: 48-hour windows, 14-day rolling baselines, and barcode plots.",
 };
 
 export default function RootLayout({

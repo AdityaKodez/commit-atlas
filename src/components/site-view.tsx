@@ -1,11 +1,9 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { PillNav } from "@/components/pill-nav";
 import { ProfileCard } from "@/components/profile-card";
 import { RepoPanel } from "@/components/repo-panel";
 import { fetchLiveSiteData } from "@/lib/live";
-import { formatMonthDayTime } from "@/lib/format";
 import { computeStats } from "@/lib/stats";
 import { buildProfileSummary } from "@/lib/summary";
 import type { SiteData } from "@/lib/github";
@@ -78,10 +76,7 @@ export function SiteView({ initial }: { initial: SiteData }) {
   const { site, refreshState, now } = useDashboardData(initial);
 
   const profile = site.profile;
-  /**
-   * A panel whose headline is "pushed 0 commits in the last 48 hours" is all
-   * zeros and nothing to explore — hide those repos entirely.
-   */
+  /** Repos with no commits in the trailing 48 hours stay off the page. */
   const activeNow = now || site.now;
   const siteWithNow = { ...site, now: activeNow };
   const panels = site.repos.reduce<
@@ -98,21 +93,17 @@ export function SiteView({ initial }: { initial: SiteData }) {
   }, []);
   const summary = buildProfileSummary(siteWithNow, profile, panels);
 
+  const status =
+    refreshState === "live"
+      ? "live, checks every 10 minutes"
+      : refreshState === "loading"
+        ? "refreshing…"
+        : refreshState === "offline"
+          ? "live refresh unavailable — showing the last data that loaded"
+          : "cached fallback, retrying automatically";
+
   return (
     <>
-      <PillNav
-        items={[
-          ...(profile && summary
-            ? [{ slug: "profile", label: "You", count: summary.commits48 }]
-            : []),
-          ...panels.map(({ repo, stats }) => ({
-            slug: repo.slug,
-            label: repo.name,
-            count: stats.windowCount,
-          })),
-        ]}
-      />
-
       <main className="mx-auto w-full max-w-5xl px-4 sm:px-6">
         {profile && summary && <ProfileCard profile={profile} summary={summary} />}
         {profile && panels.length === 0 && (
@@ -136,25 +127,7 @@ export function SiteView({ initial }: { initial: SiteData }) {
 
       <footer className="mx-auto w-full max-w-5xl px-4 pb-12 sm:px-6">
         <p className="border-t border-border/60 pt-6 text-xs leading-5 text-muted-foreground">
-          Data from the GitHub REST API (default branch).{" "}
-          {refreshState === "live"
-            ? "Live from the backend — checks for GitHub updates every 10 minutes."
-            : refreshState === "loading"
-              ? "Checking the backend for GitHub updates…"
-              : refreshState === "offline"
-                ? "Backend refresh unavailable right now — showing the last complete response."
-                : "The backend is serving cached fallback data and will retry automatically."}
-          {!site.live && site.snapshotAt && (
-            <>
-              {" "}
-              Cached data was generated {formatMonthDayTime(site.snapshotAt)};
-              run{" "}
-              <code className="rounded bg-muted px-1 py-0.5">
-                npm run snapshot
-              </code>{" "}
-              to replace the offline fallback.
-            </>
-          )}
+          Data from GitHub · {status}
         </p>
       </footer>
     </>

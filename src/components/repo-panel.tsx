@@ -1,12 +1,10 @@
 import { cn } from "cn";
 import { BarcodePlot } from "@/components/barcode-plot";
 import { DeltaChip } from "@/components/delta-chip";
-import { DotMatrix } from "@/components/dot-matrix";
 import { HourlyBars } from "@/components/hourly-bars";
 import { RollingChart } from "@/components/rolling-chart";
-import { StatsRow } from "@/components/stats-row";
 import { fmtInt, formatMonthDayTime, formatTime } from "@/lib/format";
-import { repoFullName, repoSlug, type RepoConfig } from "@/lib/repos";
+import { repoSlug, type RepoConfig } from "@/lib/repos";
 import {
   countInWindow,
   HOUR_MS,
@@ -14,9 +12,6 @@ import {
   type RepoStats,
 } from "@/lib/stats";
 import type { Commit } from "@/lib/github";
-
-const CURRENT_COLS = 13;
-const BASELINE_COLS = 10;
 
 export function RepoPanel({
   name,
@@ -33,19 +28,7 @@ export function RepoPanel({
   stats: RepoStats;
   first?: boolean;
 }) {
-  const {
-    windowStart,
-    windowEnd,
-    windowCount,
-    median,
-    mean,
-    p75,
-    p90,
-    max,
-    ratio,
-    pctWindowsReached,
-    busiest,
-  } = stats;
+  const { windowStart, windowEnd, windowCount, median, ratio, busiest } = stats;
   const medianInt = Math.round(median);
   const times = commits.map((c) => Date.parse(c.committedAt));
   const previous48 = countInWindow(
@@ -70,21 +53,19 @@ export function RepoPanel({
     <section
       id={repoSlug(config)}
       aria-label={name}
-      className={cn(
-        "scroll-mt-16 py-14 sm:py-16",
-        !first && "border-t border-border/60",
-      )}
+      className={cn("py-14 sm:py-16", !first && "border-t border-border/60")}
     >
       <h2 className="text-xl font-bold tracking-tight sm:text-2xl">
-        {name} pushed {fmtInt(windowCount)}{" "}
-        {windowCount === 1 ? "commit" : "commits"} in the last 48 hours
+        {name}
+        {stale && (
+          <span className="ml-2 text-xs font-normal text-muted-foreground">
+            cached
+          </span>
+        )}
       </h2>
-      <p className="mt-2 max-w-3xl text-xs leading-5 text-muted-foreground sm:text-sm sm:leading-6">
-        Window: {formatMonthDayTime(windowStart)} to {formatMonthDayTime(windowEnd)}.{" "}
-        Baseline: every hourly rolling 48h window over the 14 days before
-        that ({fmtInt(stats.baselineWindows)} windows). Source: GitHub commits
-        on {repoFullName(config)}.
-        {stale && " Showing a cached snapshot — live fetch failed."}
+      <p className="mt-1 text-sm text-muted-foreground">
+        {fmtInt(windowCount)} {windowCount === 1 ? "commit" : "commits"} in the
+        last 48 hours
       </p>
 
       <div className="mt-10 flex flex-wrap items-end gap-x-10 gap-y-8 sm:mt-12 sm:gap-x-14">
@@ -120,38 +101,6 @@ export function RepoPanel({
         </div>
       </div>
 
-      <div className="mt-10 flex flex-col gap-8 sm:mt-12 sm:flex-row sm:items-start sm:gap-12">
-        <div className="w-full max-w-[20rem] sm:max-w-[26rem]">
-          <DotMatrix count={windowCount} tone="current" columns={CURRENT_COLS} />
-          <p className="mt-3 text-xs text-chart-1">
-            {fmtInt(windowCount)} committed in the last 48 hours
-          </p>
-        </div>
-        <div className="w-full max-w-[16rem] sm:max-w-[17rem]">
-          <DotMatrix count={medianInt} tone="baseline" columns={BASELINE_COLS} />
-          <p className="mt-3 text-xs text-muted-foreground">
-            {fmtInt(medianInt)} in a typical 48 hours (median)
-          </p>
-        </div>
-      </div>
-
-      <div className="mt-12 sm:mt-14">
-        <StatsRow
-          items={[
-            { value: mean.toFixed(1), label: "mean per 48h window" },
-            { value: fmtInt(Math.round(p75)), label: "p75" },
-            { value: fmtInt(Math.round(p90)), label: "p90" },
-            { value: fmtInt(max), label: "max" },
-            {
-              value: pctWindowsReached ? `${pctWindowsReached.pct}%` : "—",
-              label: pctWindowsReached
-                ? `of windows reached ${fmtInt(windowCount)}+ (${fmtInt(pctWindowsReached.hits)} of ${fmtInt(pctWindowsReached.of)})`
-                : "no commits in the current window",
-            },
-          ]}
-        />
-      </div>
-
       <div className="mt-14 sm:mt-16">
         <h3 className="text-sm font-semibold sm:text-base">When they landed</h3>
         <div className="mt-6">
@@ -167,13 +116,19 @@ export function RepoPanel({
             ))}
           </div>
         </div>
-        <p className="mt-3 max-w-2xl text-xs leading-5 text-muted-foreground">
-          Each line is one commit — hover it for the message, click to open on
-          GitHub. Each shaded bar counts the commits that landed in that hour —
-          hover a bar for the exact time range.
-          {busiest &&
-            ` The busiest hour was ${formatTime(busiest.start)} to ${formatTime(busiest.end)} with ${fmtInt(busiest.count)} ${busiest.count === 1 ? "commit" : "commits"}.`}
-        </p>
+        {busiest && (
+          <p className="mt-3 text-sm">
+            Busiest hour was{" "}
+            <span className="font-semibold text-chart-1">
+              {formatTime(busiest.start)} to {formatTime(busiest.end)}
+            </span>{" "}
+            with{" "}
+            <span className="font-semibold text-chart-1 tabular-nums">
+              {fmtInt(busiest.count)}
+            </span>{" "}
+            {busiest.count === 1 ? "commit" : "commits"}.
+          </p>
+        )}
       </div>
 
       <div className="mt-14 sm:mt-16">
@@ -181,11 +136,6 @@ export function RepoPanel({
           Rolling 48h commit count, last 14 days
         </h3>
         <RollingChart stats={stats} />
-        <p className="mt-3 max-w-2xl text-xs leading-5 text-muted-foreground">
-          Each point counts the commits made in the 48 hours before it — hover
-          anywhere on the line to see the exact count and period. The white dot
-          is the current window.
-        </p>
       </div>
     </section>
   );

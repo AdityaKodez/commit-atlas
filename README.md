@@ -2,9 +2,9 @@
 
 A single-page, dark-theme dashboard of your GitHub activity: your profile and
 aggregated commits (and lines added/removed) across your own repositories, plus
-a reference-style per-repo panel — big-number hero vs. baseline median, dot
-matrix, percentile stats row, a barcode plot of when each commit landed, and a
-rolling 48-hour line chart with hover tooltips.
+a reference-style per-repo panel — big-number hero vs. baseline median, a
+barcode plot of when each commit landed, and a rolling 48-hour line chart with
+hover tooltips.
 
 Built with Next.js (App Router), Tailwind v4, shadcn/ui, and Work Sans.
 
@@ -99,12 +99,11 @@ code. Without it the page shows a setup guide.
 
 - **Profile card** — your avatar/bio, commits in the last 48h and 14 days
   (commits attributed to your GitHub account, or matching your git name for
-  unlinked commits), lines `+added / −removed`, a hoverable commits-per-day
-  bar chart, and per-repo pills.
+  unlinked commits), lines `+added / −removed`, a 6-month heatmap, lines-per-day
+  chart, and a weekday/hour punchcard.
 - **Per-repo panels** — repo-wide activity in the reference layout:
   - Current window = commits in the trailing 48 hours; baseline = every hourly
-    rolling 48h window ending in the prior 14 days (337 windows) → median,
-    p75, p90, max, mean.
+    rolling 48h window ending in the prior 14 days (337 windows) → median.
   - **When they landed** — one line per commit (hover: message; click: open on
     GitHub); shaded bars count commits per hour (hover any bar, even empty).
   - **Rolling chart** — each point counts the commits in the 48 hours before
